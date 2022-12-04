@@ -1,0 +1,55 @@
+﻿@model GestãoDeSalaDeAula.Models.Aluno
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+
+<div class="textHeader">
+    <h1>Detalhes</h1>
+</div>
+
+<div>
+    <dl class="dl">
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.Nome):</b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.Media):</b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Media)
+        </dd>
+        <dt class="col-sm-2">
+            <b>@Html.DisplayNameFor(model => model.Nota1):</b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nota1)
+        </dd>
+        <dt class="col-sm-2">
+            <b>@Html.DisplayNameFor(model => model.Nota2):</b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nota2)
+        </dd>
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.Nota3):</b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nota3)
+        </dd>
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.Nota4):</b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nota4)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+    <a asp-action="Index">Voltar</a>
+</div>
