@@ -134,7 +134,7 @@ form input[type=submit]:hover, form input[type=submit]:focus {
 }
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0px;
     width: 100%;
     text-align: center;
