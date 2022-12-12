@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Tabela";
+    int posicao = 1;
 }
 
 <div class="textHeader">
@@ -14,6 +15,9 @@
     <table class="tabela">
         <thead>
             <tr>
+                <th>
+                    <span>Posição</span>
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Nome)
                 </th>
@@ -28,6 +32,10 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        @(posicao + "º")
+                        @{posicao++;}
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
