@@ -1,0 +1,21 @@
+﻿@model GestãoDeSalaDeAula.Models.Materias
+
+@{
+    ViewData["title"] = "Deletar";
+}
+
+<dl class="dl">
+    <dt>
+        <b>@Html.DisplayNameFor(model => model.MateriasName):</b>
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.MateriasName)
+    </dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id"/>
+    <input asp-for="MateriasName"/>
+    <input type="submit" value="Deletar"/>
+</form>
+

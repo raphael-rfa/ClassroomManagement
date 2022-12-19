@@ -23,11 +23,13 @@ namespace GestãoDeSalaDeAula.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var aluno = from a in _context.Aluno
+            var aluno = from a in _context.Alunos
+                        /*****************
+                            Aprender a fazer a junção da
+                            tabela assim como em details
+                         *****************/
                         select a;
-            aluno = aluno.OrderByDescending(a => (a.Nota1 + a.Nota2 + a.Nota3 + a.Nota4)/4);
-
-              return _context.Aluno != null ? 
+              return _context.Alunos != null ? 
                           View(await aluno.ToListAsync()) :
                           Problem("Entity set 'GestãoDeSalaDeAulaContext.Aluno'  is null.");
         }
@@ -35,12 +37,15 @@ namespace GestãoDeSalaDeAula.Controllers
         // GET: Alunoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Aluno == null)
+            if (id == null || _context.Alunos == null)
             {
                 return NotFound();
             }
 
-            var aluno = await _context.Aluno
+            var aluno = await _context.Alunos!
+                .Include(p => p.Provas!)
+                    .ThenInclude(m => m.Materias)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (aluno == null)
             {
@@ -61,7 +66,7 @@ namespace GestãoDeSalaDeAula.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Nota1,Nota2,Nota3,Nota4")] Aluno aluno)
+        public async Task<IActionResult> Create([Bind("Id,Nome")] Aluno aluno)
         {
             if (ModelState.IsValid)
             {
@@ -75,12 +80,12 @@ namespace GestãoDeSalaDeAula.Controllers
         // GET: Alunoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Aluno == null)
+            if (id == null || _context.Alunos == null)
             {
                 return NotFound();
             }
 
-            var aluno = await _context.Aluno.FindAsync(id);
+            var aluno = await _context.Alunos.FindAsync(id);
             if (aluno == null)
             {
                 return NotFound();
@@ -93,7 +98,7 @@ namespace GestãoDeSalaDeAula.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Nota1,Nota2,Nota3,Nota4")] Aluno aluno)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Aluno aluno)
         {
             if (id != aluno.Id)
             {
@@ -126,12 +131,12 @@ namespace GestãoDeSalaDeAula.Controllers
         // GET: Alunoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Aluno == null)
+            if (id == null || _context.Alunos == null)
             {
                 return NotFound();
             }
 
-            var aluno = await _context.Aluno
+            var aluno = await _context.Alunos
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (aluno == null)
             {
@@ -146,14 +151,14 @@ namespace GestãoDeSalaDeAula.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Aluno == null)
+            if (_context.Alunos == null)
             {
                 return Problem("Entity set 'GestãoDeSalaDeAulaContext.Aluno'  is null.");
             }
-            var aluno = await _context.Aluno.FindAsync(id);
+            var aluno = await _context.Alunos.FindAsync(id);
             if (aluno != null)
             {
-                _context.Aluno.Remove(aluno);
+                _context.Alunos.Remove(aluno);
             }
             
             await _context.SaveChangesAsync();
@@ -162,7 +167,7 @@ namespace GestãoDeSalaDeAula.Controllers
 
         private bool AlunoExists(int id)
         {
-          return (_context.Aluno?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Alunos?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

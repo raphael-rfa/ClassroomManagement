@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Detalhes";
+    double soma = 0;
+    double media = 0;
 }
 
 
@@ -18,34 +20,39 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt>
-            <b>@Html.DisplayNameFor(model => model.Media):</b>
+            <b>Media</b>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Media)
-        </dd>
-        <dt class="col-sm-2">
-            <b>@Html.DisplayNameFor(model => model.Nota1):</b>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nota1)
-        </dd>
-        <dt class="col-sm-2">
-            <b>@Html.DisplayNameFor(model => model.Nota2):</b>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nota2)
+            @{
+                foreach(var item in Model.Provas!)
+                {
+                    soma += item.Nota;
+                }
+                media = soma / 7;
+            }
+            <p>@media.ToString("N2")</p>
         </dd>
         <dt>
-            <b>@Html.DisplayNameFor(model => model.Nota3):</b>
+            <b>@Html.DisplayNameFor(model => model.Provas)</b>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Nota3)
-        </dd>
-        <dt>
-            <b>@Html.DisplayNameFor(model => model.Nota4):</b>
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nota4)
+            <table>
+                <tr>
+                    <th>Materia</th>
+                    <th>Nota</th>
+                </tr>
+                @foreach(var item in Model.Provas!)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelitem => item.Materias!.MateriasName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nota)
+                        </td>
+                    </tr>
+                }
+            </table>
         </dd>
     </dl>
 </div>

@@ -272,12 +272,4 @@ C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\Ges
 C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\obj\Debug\net7.0\GestãoDeSalaDeAula.pdb
 C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\obj\Debug\net7.0\GestãoDeSalaDeAula.genruntimeconfig.cache
 C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\obj\Debug\net7.0\ref\GestãoDeSalaDeAula.dll
-C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\bin\Debug\net7.0\System.Web.Mvc.dll
-C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\bin\Debug\net7.0\System.Web.Razor.dll
-C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\bin\Debug\net7.0\System.Web.Helpers.dll
-C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\bin\Debug\net7.0\System.Web.WebPages.Deployment.dll
-C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
-C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\bin\Debug\net7.0\System.Web.WebPages.dll
-C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
-C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\bin\Debug\net7.0\pt-BR\System.Web.Mvc.resources.dll
 C:\Users\55389\OneDrive\Área de Trabalho\csharp\asp-net\GestãoDeSalaDeAula\GestãoDeSalaDeAula\bin\Debug\net7.0\Microsoft.CodeAnalysis.Elfie.dll
