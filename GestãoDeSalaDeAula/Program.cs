@@ -2,6 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using GestãoDeSalaDeAula.Data;
 using GestãoDeSalaDeAula.Models;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
+
 namespace GestãoDeSalaDeAula
 {
     public class Program
@@ -10,12 +13,12 @@ namespace GestãoDeSalaDeAula
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<GestãoDeSalaDeAulaContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("GestãoDeSalaDeAulaContext") ?? throw new InvalidOperationException("Connection string 'GestãoDeSalaDeAulaContext' not found.")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'GestãoDeSalaDeAulaContext' not found.")));
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews();            
 
-            var app = builder.Build();
+                var app = builder.Build();
 
                 // Configure the HTTP request pipeline.
                 if (!app.Environment.IsDevelopment())

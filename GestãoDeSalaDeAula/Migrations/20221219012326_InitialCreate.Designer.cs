@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestãoDeSalaDeAula.Migrations
 {
     [DbContext(typeof(GestãoDeSalaDeAulaContext))]
-    [Migration("20221204174247_azure")]
-    partial class azure
+    [Migration("20221219012326_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,22 @@ namespace GestãoDeSalaDeAula.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Aluno");
+                });
+
+            modelBuilder.Entity("GestãoDeSalaDeAula.Models.Materias", b =>
+                {
+                    b.Property<int>("MateriasId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MateriasId"));
+
+                    b.Property<string>("MateriasName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MateriasId");
+
+                    b.ToTable("Materias");
                 });
 #pragma warning restore 612, 618
         }

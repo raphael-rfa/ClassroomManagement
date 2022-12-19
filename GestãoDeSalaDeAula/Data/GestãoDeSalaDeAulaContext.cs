@@ -15,5 +15,6 @@ namespace GestãoDeSalaDeAula.Data
         }
 
         public DbSet<GestãoDeSalaDeAula.Models.Aluno> Aluno { get; set; } = default!;
+        public DbSet<GestãoDeSalaDeAula.Models.Materias> Materias { get; set; }
     }
 }

@@ -48,6 +48,22 @@ namespace GestãoDeSalaDeAula.Migrations
 
                     b.ToTable("Aluno");
                 });
+
+            modelBuilder.Entity("GestãoDeSalaDeAula.Models.Materias", b =>
+                {
+                    b.Property<int>("MateriasId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MateriasId"));
+
+                    b.Property<string>("MateriasName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MateriasId");
+
+                    b.ToTable("Materias");
+                });
 #pragma warning restore 612, 618
         }
     }

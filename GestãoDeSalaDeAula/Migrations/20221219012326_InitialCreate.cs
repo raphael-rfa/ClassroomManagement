@@ -5,7 +5,7 @@
 namespace GestãoDeSalaDeAula.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -26,6 +26,19 @@ namespace GestãoDeSalaDeAula.Migrations
                 {
                     table.PrimaryKey("PK_Aluno", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Materias",
+                columns: table => new
+                {
+                    MateriasId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MateriasName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Materias", x => x.MateriasId);
+                });
         }
 
         /// <inheritdoc />
@@ -33,6 +46,9 @@ namespace GestãoDeSalaDeAula.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Aluno");
+
+            migrationBuilder.DropTable(
+                name: "Materias");
         }
     }
 }

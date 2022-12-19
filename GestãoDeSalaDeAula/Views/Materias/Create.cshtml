@@ -1,0 +1,10 @@
+﻿@model GestãoDeSalaDeAula.Models.Materias
+
+@{
+    ViewData["title"] = "Criar";
+}
+
+<form asp-action="Create">
+    <input asp-for="MateriasName"/>
+    <input type="submit"/>
+</form>
