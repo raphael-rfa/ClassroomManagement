@@ -38,7 +38,8 @@ namespace GestãoDeSalaDeAula.Controllers
                 provas.AlunosId = notas.aluno.Id;
                 _context!.Provas.Add(provas);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName", notas.provas.MateriasId);
+                return View();
             }            
             ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName", notas.provas.MateriasId);
             return View(notas);
