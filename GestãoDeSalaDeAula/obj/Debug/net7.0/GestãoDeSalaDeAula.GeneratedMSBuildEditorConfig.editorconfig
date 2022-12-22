@@ -36,6 +36,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9lc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/AlunoViewModel/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9WaWV3TW9kZWxcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/AlunoViewModel/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9WaWV3TW9kZWxcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/Materias/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -46,14 +54,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/Materias/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYXNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/Provas/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmFzXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/Provas/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmFzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/Shared/Error.cshtml]

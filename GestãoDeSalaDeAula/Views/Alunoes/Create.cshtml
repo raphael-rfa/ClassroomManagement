@@ -1,4 +1,4 @@
-﻿@model GestãoDeSalaDeAula.Models.Aluno
+﻿@model GestãoDeSalaDeAula.Models.Alunos
 
 @{
     ViewData["Title"] = "Adicionar";
@@ -15,9 +15,9 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly"></div>
             <div>
-                <label asp-for="Nome"></label>
-                <input asp-for="Nome"/>
-                <span asp-validation-for="Nome"></span>
+                <label asp-for="Name"></label>
+                <input asp-for="Name"/>
+                <span asp-validation-for="Name"></span>
             </div>
             <div>
                 <input type="submit" value="Adicionar"/>

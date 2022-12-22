@@ -1,4 +1,4 @@
-﻿using GestãoDeSalaDeAula.Models;
+﻿/*using GestãoDeSalaDeAula.Models;
 
 namespace GestãoDeSalaDeAula.Data
 {
@@ -15,7 +15,7 @@ namespace GestãoDeSalaDeAula.Data
 
             var aluno = new Aluno[]
             {
-                new Aluno {Nome = "Hermione Granger"}
+                new Aluno {Name = "Hermione Granger"}
             };
 
             foreach (Aluno a in aluno)
@@ -43,3 +43,4 @@ namespace GestãoDeSalaDeAula.Data
         }
     }
 }
+*/

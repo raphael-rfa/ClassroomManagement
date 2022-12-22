@@ -5,7 +5,7 @@
 namespace GestãoDeSalaDeAula.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialRecreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,7 @@ namespace GestãoDeSalaDeAula.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,16 +42,16 @@ namespace GestãoDeSalaDeAula.Migrations
                 {
                     ProvasId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    AlunosId = table.Column<int>(type: "int", nullable: false),
                     MateriasId = table.Column<int>(type: "int", nullable: false),
-                    AlunoId = table.Column<int>(type: "int", nullable: false),
                     Nota = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Provas", x => x.ProvasId);
                     table.ForeignKey(
-                        name: "FK_Provas_Alunos_AlunoId",
-                        column: x => x.AlunoId,
+                        name: "FK_Provas_Alunos_AlunosId",
+                        column: x => x.AlunosId,
                         principalTable: "Alunos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -64,9 +64,9 @@ namespace GestãoDeSalaDeAula.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Provas_AlunoId",
+                name: "IX_Provas_AlunosId",
                 table: "Provas",
-                column: "AlunoId");
+                column: "AlunosId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Provas_MateriasId",

@@ -1,0 +1,17 @@
+﻿@model GestãoDeSalaDeAula.Models.ViewModel.AlunoViewModel
+
+@{
+    ViewData["title"] = "Criar";
+}
+
+<form asp-action="Create"> 
+    <input type="hidden" asp-for="aluno.Id"/>
+    <div>
+        <input asp-for="aluno.Name"/>
+    </div> 
+    <select asp-for="provas!.MateriasId" asp-items="ViewBag.MateriasId">
+        <option value="">-Selecione a materia-</option>
+    </select>
+    <input asp-for="provas!.Nota"/>
+    <input type="submit"/>
+</form>

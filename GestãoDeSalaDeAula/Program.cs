@@ -20,13 +20,13 @@ namespace GestãoDeSalaDeAula
 
                 var app = builder.Build();
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
+            //using (var scope = app.Services.CreateScope())
+            //{
+                //var services = scope.ServiceProvider;
 
-                var context = services.GetRequiredService<GestãoDeSalaDeAulaContext>();
-                SeedData.Initialize(context);
-            }
+                //var context = services.GetRequiredService<GestãoDeSalaDeAulaContext>();
+               // SeedData.Initialize(context);
+            //}
 
                 // Configure the HTTP request pipeline.
                 if (!app.Environment.IsDevelopment())
@@ -45,7 +45,7 @@ namespace GestãoDeSalaDeAula
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Provas}/{action=Create}/{id?}");
+                pattern: "{controller=Alunoes}/{action=Create}/{id?}");
 
             app.Run();
         }

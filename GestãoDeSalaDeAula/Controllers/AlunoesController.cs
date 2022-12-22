@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GestãoDeSalaDeAula.Data;
 using GestãoDeSalaDeAula.Models;
+using GestãoDeSalaDeAula.Models.ViewModel;
+using System.Text.RegularExpressions;
 
 namespace GestãoDeSalaDeAula.Controllers
 {
@@ -22,15 +24,19 @@ namespace GestãoDeSalaDeAula.Controllers
         // GET: Alunoes
         public async Task<IActionResult> Index()
         {
-
-            var aluno = from a in _context.Alunos
-                        /*****************
-                            Aprender a fazer a junção da
-                            tabela assim como em details
-                         *****************/
-                        select a;
-              return _context.Alunos != null ? 
-                          View(await aluno.ToListAsync()) :
+            IQueryable<MediaNotasGroup> alunos =                
+                from aluno in _context.Alunos
+                join prova in _context.Provas on aluno.Id equals prova.AlunosId into notas
+                select new MediaNotasGroup
+                {
+                    Id = aluno.Id,
+                    Name = aluno.Name,                    
+                    Media = notas.Average(a => a.Nota)
+                };
+            alunos = alunos.OrderByDescending(a => a.Media);
+             
+            return _context.Alunos != null ? 
+                          View(await alunos.AsNoTracking().ToListAsync()):
                           Problem("Entity set 'GestãoDeSalaDeAulaContext.Aluno'  is null.");
         }
 
@@ -57,7 +63,7 @@ namespace GestãoDeSalaDeAula.Controllers
 
         // GET: Alunoes/Create
         public IActionResult Create()
-        {
+        {            
             return View();
         }
 
@@ -66,13 +72,14 @@ namespace GestãoDeSalaDeAula.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome")] Aluno aluno)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Alunos aluno)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(aluno);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync();                
+                return RedirectToAction("Create", new RouteValueDictionary(
+                new { controller = "AlunoViewModel", action = "Create", Id = aluno.Id }));
             }
             return View(aluno);
         }
@@ -98,7 +105,7 @@ namespace GestãoDeSalaDeAula.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Aluno aluno)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Alunos aluno)
         {
             if (id != aluno.Id)
             {

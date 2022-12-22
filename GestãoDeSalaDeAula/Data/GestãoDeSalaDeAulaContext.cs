@@ -14,13 +14,13 @@ namespace GestãoDeSalaDeAula.Data
         {
         }
 
-        public DbSet<GestãoDeSalaDeAula.Models.Aluno> Alunos { get; set; }
+        public DbSet<GestãoDeSalaDeAula.Models.Alunos> Alunos { get; set; }
         public DbSet<GestãoDeSalaDeAula.Models.Materias> Materias { get; set; }
         public DbSet<GestãoDeSalaDeAula.Models.Provas> Provas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Aluno>().ToTable("Alunos");
+            modelBuilder.Entity<Alunos>().ToTable("Alunos");
             modelBuilder.Entity<Materias>().ToTable("Materias");
             modelBuilder.Entity<Provas>().ToTable("Provas");
         }

@@ -21,7 +21,7 @@ namespace GestãoDeSalaDeAula.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GestãoDeSalaDeAula.Models.Aluno", b =>
+            modelBuilder.Entity("GestãoDeSalaDeAula.Models.Alunos", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,7 +29,7 @@ namespace GestãoDeSalaDeAula.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -62,7 +62,7 @@ namespace GestãoDeSalaDeAula.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProvasId"));
 
-                    b.Property<int>("AlunoId")
+                    b.Property<int>("AlunosId")
                         .HasColumnType("int");
 
                     b.Property<int>("MateriasId")
@@ -73,7 +73,7 @@ namespace GestãoDeSalaDeAula.Migrations
 
                     b.HasKey("ProvasId");
 
-                    b.HasIndex("AlunoId");
+                    b.HasIndex("AlunosId");
 
                     b.HasIndex("MateriasId");
 
@@ -82,9 +82,9 @@ namespace GestãoDeSalaDeAula.Migrations
 
             modelBuilder.Entity("GestãoDeSalaDeAula.Models.Provas", b =>
                 {
-                    b.HasOne("GestãoDeSalaDeAula.Models.Aluno", "Aluno")
-                        .WithMany()
-                        .HasForeignKey("AlunoId")
+                    b.HasOne("GestãoDeSalaDeAula.Models.Alunos", "Aluno")
+                        .WithMany("Provas")
+                        .HasForeignKey("AlunosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -97,6 +97,11 @@ namespace GestãoDeSalaDeAula.Migrations
                     b.Navigation("Aluno");
 
                     b.Navigation("Materias");
+                });
+
+            modelBuilder.Entity("GestãoDeSalaDeAula.Models.Alunos", b =>
+                {
+                    b.Navigation("Provas");
                 });
 #pragma warning restore 612, 618
         }
