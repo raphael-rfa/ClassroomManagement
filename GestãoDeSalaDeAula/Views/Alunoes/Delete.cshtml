@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Deletar";
+    double soma = 0;
+    double media = 0;
 }
 
 <div class="textHeader">
@@ -16,12 +18,25 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
+        <dt>
+            <b>Media</b>
+        </dt>
+        <dd>
+            @{
+                foreach (var item in Model.Provas)
+                {
+                    soma += item.Nota;
+                }
+                media = soma / 7;
+            }
+            <p>@media.ToString("N2")</p>
+        </dd>
     </dl>
 </div>
  <div>   
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Deletar"/> |
+        <input type="submit" value="Deletar"/>
         <a asp-action="Index">Voltar</a>
     </form>
 </div>

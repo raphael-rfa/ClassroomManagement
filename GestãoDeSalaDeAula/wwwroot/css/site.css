@@ -6,7 +6,7 @@
 
 html, body {
     min-height: 100%;
-    font-size: 18px;  
+    font-size: 18px;
     font-family: 'Yu Gothic UI';
 }
 
@@ -15,10 +15,11 @@ html, body {
     margin: auto;
 }
 
-nav{
+nav {
     display: flex;
     justify-content: space-around;
     box-shadow: 0px 0px 10px 1px black;
+    background-color: #6f0001;
 }
 
 .logo{
@@ -42,7 +43,7 @@ nav li:hover {
 
 nav li a{
     text-decoration: none;
-    color: #6f0001;
+    color: white;
 }
 
 a {

@@ -33,7 +33,7 @@
             <p>@media.ToString("N2")</p>
         </dd>
         <dt>
-            <b>@Html.DisplayNameFor(model => model.Provas)</b>
+            <h2><b>Boletim</b></h2>
         </dt>
         <dd>
             <table>
@@ -50,7 +50,11 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Nota)
                         </td>
-                    </tr>
+                        <td>
+                            <a asp-controller="AlunoViewModel" asp-action="Edit" asp-route-id="@item.ProvasId">Editar</a> |
+                            <a asp-controller="AlunoViewModel" asp-action="Delete" asp-route-id="@item.ProvasId">Deletar</a>
+                        </td>
+                    </tr> 
                 }
             </table>
         </dd>

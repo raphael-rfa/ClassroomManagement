@@ -85,14 +85,15 @@ namespace GestãoDeSalaDeAula.Controllers
         }
 
         // GET: Alunoes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Alunos == null)
+            if (_context.Alunos == null)
             {
                 return NotFound();
             }
 
             var aluno = await _context.Alunos.FindAsync(id);
+            
             if (aluno == null)
             {
                 return NotFound();
@@ -105,7 +106,7 @@ namespace GestãoDeSalaDeAula.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Alunos aluno)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Alunos aluno)
         {
             if (id != aluno.Id)
             {
@@ -138,18 +139,18 @@ namespace GestãoDeSalaDeAula.Controllers
         // GET: Alunoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Alunos == null)
-            {
+            if( id == null || _context.Alunos == null)
+            { 
                 return NotFound();
             }
 
             var aluno = await _context.Alunos
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(p => p.Provas)
+                .FirstOrDefaultAsync(a => a.Id == id);
             if (aluno == null)
             {
                 return NotFound();
             }
-
             return View(aluno);
         }
 

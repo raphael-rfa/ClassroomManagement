@@ -1,0 +1,16 @@
+﻿@model GestãoDeSalaDeAula.Models.ViewModel.AlunoViewModel
+
+@{
+    ViewData["title"] = "Deletar";
+}
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="provas.ProvasId" />
+    <input type="hidden" asp-for="provas.Aluno.Id" />
+    <label asp-for="provas.Aluno.Id">@Html.DisplayFor(Model => Model.provas.Aluno.Name)</label>
+    <input type="hidden" asp-for="provas.Aluno.Name" />
+    <label asp-for="provas.MateriasId">@Html.DisplayFor(Model => Model.provas.Materias.MateriasName)</label>
+    <input type="hidden" asp-for="provas.MateriasId" />
+    <input asp-for="provas.Nota" />
+    <input type="submit" value="Deletar" />
+</form>
