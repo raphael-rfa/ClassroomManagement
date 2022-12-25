@@ -40,7 +40,7 @@ namespace GestãoDeSalaDeAula.Controllers
                 _context!.Provas.Add(provas);
                 await _context.SaveChangesAsync();
                 ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName", notas.provas.MateriasId);
-                return View();
+                return View(notas);
             }            
             ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName", notas.provas.MateriasId);
             return View(notas);
@@ -55,7 +55,7 @@ namespace GestãoDeSalaDeAula.Controllers
 
             AlunoViewModel prova = await _context.Provas
                 .Include(a => a.Aluno)
-                .Include(m => m.Materias)
+                .Include(m => m.Materia)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ProvasId == id);
             if (prova == null)
@@ -115,6 +115,7 @@ namespace GestãoDeSalaDeAula.Controllers
 
             AlunoViewModel prova = await _context.Provas
                 .Include(a => a.Aluno)
+                .Include(m => m.Materia)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ProvasId == id);
             if (prova == null)
@@ -127,25 +128,38 @@ namespace GestãoDeSalaDeAula.Controllers
         // POST: Alunoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(AlunoViewModel ProvasAluno)
+        public async Task<IActionResult> Delete(int id, AlunoViewModel ProvasAluno)
         {
             Provas prova = ProvasAluno.provas;
             prova.AlunosId = ProvasAluno.provas.Aluno.Id;
-
-            if (_context.Provas == null)
+            if (id != prova.ProvasId)
             {
-                return Problem("Erro 'GestãoDeSalaDeAulaContext.Provas' é nulo.");
-            }
-            
-            if (prova != null)
-            {
-                _context.Provas.Remove(prova);
+                return NotFound();
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Detail", new RouteValueDictionary(
-                    new { controller = "Alunoes", action = "Index", prova.Aluno.Id }));
-        } 
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Remove(prova);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProvaExists(prova.ProvasId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("Details", new RouteValueDictionary(
+                    new { controller = "Alunoes", action = "Details", prova.Aluno.Id }));
+            }
+            return View(prova);
+        }
     }
 
 }

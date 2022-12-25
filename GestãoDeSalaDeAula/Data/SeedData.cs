@@ -409,7 +409,7 @@ namespace GestãoDeSalaDeAula.Data
                 var ProvasNoBanco = context.Provas.Where(
                     s =>
                             s.Aluno.Id == p.AlunosId &&
-                            s.Materias.Id == p.MateriasId).SingleOrDefault();
+                            s.Materia.Id == p.MateriasId).SingleOrDefault();
                 if (ProvasNoBanco == null)
                 {
                     context.Provas.Add(p);

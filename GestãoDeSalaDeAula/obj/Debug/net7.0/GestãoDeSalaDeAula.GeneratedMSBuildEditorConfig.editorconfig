@@ -48,16 +48,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9WaWV3TW9kZWxcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/AlunoViewModel/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9WaWV3TW9kZWxcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/Materias/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/Materias/DeleteConfirm.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYXNcRGVsZXRlQ29uZmlybS5jc2h0bWw=
+[C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/Materias/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWF0ZXJpYXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/55389/OneDrive/Área de Trabalho/csharp/asp-net/GestãoDeSalaDeAula/GestãoDeSalaDeAula/Views/Materias/Index.cshtml]

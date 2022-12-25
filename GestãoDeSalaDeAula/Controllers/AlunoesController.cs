@@ -50,7 +50,7 @@ namespace GestãoDeSalaDeAula.Controllers
 
             var aluno = await _context.Alunos!
                 .Include(p => p.Provas!)
-                    .ThenInclude(m => m.Materias)
+                    .ThenInclude(m => m.Materia)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (aluno == null)
@@ -79,7 +79,7 @@ namespace GestãoDeSalaDeAula.Controllers
                 _context.Add(aluno);
                 await _context.SaveChangesAsync();                
                 return RedirectToAction("Create", new RouteValueDictionary(
-                new { controller = "AlunoViewModel", action = "Create", Id = aluno.Id }));
+                new { controller = "AlunoViewModel", action = "Create", aluno.Id }));
             }
             return View(aluno);
         }

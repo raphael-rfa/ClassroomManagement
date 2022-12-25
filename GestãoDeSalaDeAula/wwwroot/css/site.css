@@ -142,6 +142,42 @@ footer {
     padding: 20px;
 }
 
+.linha{
+    display: flex;
+}
+
+.boxLinha{
+    padding: 10px;
+}
+
+.select {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 17px;
+}
+
+.boletim {
+    border-collapse: collapse;    
+    width: 70%;
+    margin: 10px 0px 20px;
+    color: black;
+}
+
+.boletim tr{
+    border-bottom: 1px solid black;
+    padding: 15px;
+}
+
+.boletim th{
+    text-align: left;
+}
+
+.boletim td{
+    padding: 5px;
+}
+
+
 @media screen and (max-width: 1070px){
     .main {
         width: 85%;

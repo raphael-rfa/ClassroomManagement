@@ -9,8 +9,9 @@
     <input type="hidden" asp-for="provas.Aluno.Id"/>
     <label asp-for="provas.Aluno.Id">@Html.DisplayFor(Model => Model.provas.Aluno.Name)</label>
     <input type="hidden" asp-for="provas.Aluno.Name"/>
-    <label asp-for="provas.MateriasId">@Html.DisplayFor(Model => Model.provas.Materias.MateriasName)</label>
-    <input type="hidden" asp-for="provas.MateriasId"/>
+    <label asp-for="provas.MateriasId">@Html.DisplayFor(Model => Model.provas.Materia.MateriasName)</label>
+    <input type="hidden" asp-for="provas.MateriasId" />
     <input asp-for="provas.Nota"/>
     <input type="submit" value="Atualizar"/>
 </form>
+<a asp-controller="Alunoes" asp-action="Details" asp-route-id="@Model.aluno.Id">Voltar</a>
