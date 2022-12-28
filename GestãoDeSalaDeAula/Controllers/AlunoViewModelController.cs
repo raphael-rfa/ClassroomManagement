@@ -24,7 +24,7 @@ namespace GestãoDeSalaDeAula.Controllers
         public async Task<IActionResult> Create(int Id)
         {
 
-            AlunoViewModel aluno = await _context.Alunos.FindAsync(Id);            
+            AlunoViewModel aluno = await _context.Alunos.FindAsync(Id);
             ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName");
             return View(aluno);
         }
@@ -39,16 +39,16 @@ namespace GestãoDeSalaDeAula.Controllers
                 provas.AlunosId = notas.aluno.Id;
                 _context!.Provas.Add(provas);
                 await _context.SaveChangesAsync();
-                ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName", notas.provas.MateriasId);
+                ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName");
                 return View(notas);
-            }            
-            ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName", notas.provas.MateriasId);
+            }
+            ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName");
             return View(notas);
         }
 
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Provas == null)
+            if (_context.Provas == null)
             {
                 return NotFound();
             }

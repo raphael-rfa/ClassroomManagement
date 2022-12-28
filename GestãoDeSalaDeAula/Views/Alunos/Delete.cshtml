@@ -23,7 +23,7 @@
         </dt>
         <dd>
             @{
-                foreach (var item in Model.Provas)
+                foreach (var item in Model.Provas!)
                 {
                     soma += item.Nota;
                 }

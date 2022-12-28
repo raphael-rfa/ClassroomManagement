@@ -8,5 +8,8 @@ namespace GestãoDeSalaDeAula.Models
 
         [MaxLength(50)]
         public string? MateriasName { get; set; }
+
+        public ICollection<ProfessorMateria>? ProfessorMateria { get; set; }
+        public ICollection<Provas>? Provas { get; set; }
     }
 }

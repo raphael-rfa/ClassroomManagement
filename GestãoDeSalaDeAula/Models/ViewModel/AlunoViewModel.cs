@@ -15,7 +15,7 @@
 
         public static implicit operator AlunoViewModel?(Provas? p)
         {
-            Alunos alunos = new Alunos { Id = p.Aluno.Id, Name = p.Aluno.Name};
+            Alunos alunos = new Alunos { Id = p!.Aluno!.Id, Name = p.Aluno.Name};
             AlunoViewModel prova;
             prova = new AlunoViewModel { provas = p, aluno = alunos};
             prova.provas.AlunosId = p.Aluno.Id;

@@ -12,11 +12,11 @@ using System.Text.RegularExpressions;
 
 namespace GestãoDeSalaDeAula.Controllers
 {
-    public class AlunoesController : Controller
+    public class AlunosController : Controller
     {
         private readonly GestãoDeSalaDeAulaContext _context;
 
-        public AlunoesController(GestãoDeSalaDeAulaContext context)
+        public AlunosController(GestãoDeSalaDeAulaContext context)
         {
             _context = context;
         }

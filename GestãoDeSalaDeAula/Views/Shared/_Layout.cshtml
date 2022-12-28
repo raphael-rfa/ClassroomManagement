@@ -17,6 +17,7 @@
     <meta property="og:site_name" content="Gestão de sala de aula" />
    <meta property="og:image" content="https://gestaodesaladeaula.azurewebsites.net/imagens/logo.svg" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel|Fauna+One">
 </head>
 <body>
     <header>
@@ -26,10 +27,13 @@
             </div>
             <ul>
                 <li>
-                    <b><a asp-area="" asp-controller="Alunoes" asp-action="Index">Ranking</a></b>
+                    <b><a asp-area="" asp-controller="Alunos" asp-action="Index">Ranking</a></b>
                 </li>
                 <li>
-                    <a asp-area="" asp-controller="Alunoes" asp-action="create">Adicionar aluno</a>
+                    <a asp-area="" asp-controller="Professores" asp-action="Index">Professores</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Alunos" asp-action="create">Adicionar aluno</a>
                 </li>
             </ul>
         </nav>

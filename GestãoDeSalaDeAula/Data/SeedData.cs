@@ -1,4 +1,5 @@
 ﻿using GestãoDeSalaDeAula.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GestãoDeSalaDeAula.Data
 {
@@ -8,27 +9,10 @@ namespace GestãoDeSalaDeAula.Data
         {
             context.Database.EnsureCreated();
 
-            if (context.Materias.Any())
+            if (context.Alunos.Any())
             {
                 return;//Banco de dados já foi semeado
             }           
-
-            var materias = new Materias[]
-            {
-                new Materias {MateriasName = "Transfiguração"},
-                new Materias {MateriasName = "Feitiços"},
-                new Materias {MateriasName = "Poções"},
-                new Materias {MateriasName = "Historia da Magia"},
-                new Materias {MateriasName = "Defesa Contra as Artes das Trevas"},
-                new Materias {MateriasName = "Astronomia"},
-                new Materias {MateriasName = "Herbologia"}
-            };
-
-            foreach (Materias m in materias)
-            {
-                context.Materias.Add(m);
-            }
-            context.SaveChanges();
 
             var alunos = new Alunos[]
             {
@@ -44,12 +28,87 @@ namespace GestãoDeSalaDeAula.Data
                 new Alunos { Name = "Kellah"}
             };
 
-            foreach(Alunos aluno in alunos)
+            foreach (Alunos aluno in alunos)
             {
                 context.Alunos.Add(aluno);
             }
             context.SaveChanges();
+            
+            var professores = new Professores[]
+            {
+                new Professores { Name = "Minerva McGonagall"},
+                new Professores { Name = "Filius Flitwick"},
+                new Professores { Name = "Severo Snape"},
+                new Professores { Name = "Cuthbert Binns"},
+                new Professores { Name = "Quirino Quirrell"},
+                new Professores { Name = "Aurora Sinistra"},
+                new Professores { Name = "Pomona Sprout"}
+            };
 
+            foreach (Professores professor in professores)
+            {
+                context.Professores.Add(professor);
+            }
+            context.SaveChanges();
+
+            var materias = new Materias[]
+            {
+                new Materias { MateriasName = "Transfiguração"},
+                new Materias { MateriasName = "Feitiços"},
+                new Materias { MateriasName = "Poções"},
+                new Materias { MateriasName = "Historia da Magia"},
+                new Materias { MateriasName = "Defesa Contra as Artes das Trevas"},
+                new Materias { MateriasName = "Astronomia"},
+                new Materias { MateriasName = "Herbologia"}
+            };
+
+            foreach (Materias m in materias)
+            {
+                context.Materias.Add(m);
+            }
+            context.SaveChanges();
+
+
+            var professomateria = new ProfessorMateria[]
+            {
+                new ProfessorMateria { MateriasId = 
+                    materias.Single(m => m.MateriasName == "Transfiguração").Id,
+                    ProfessoresId = professores.Single(p => p.Name == "Minerva McGonagall").Id
+                },
+                new ProfessorMateria { MateriasId = 
+                    materias.Single(m => m.MateriasName == "Feitiços").Id,
+                    ProfessoresId = professores.Single(p => p.Name == "Filius Flitwick").Id
+                },
+                new ProfessorMateria { MateriasId = 
+                    materias.Single(m => m.MateriasName == "Poções").Id,
+                    ProfessoresId = professores.Single(p => p.Name == "Severo Snape").Id
+                },
+                new ProfessorMateria { MateriasId = 
+                    materias.Single(m => m.MateriasName == "Historia da Magia").Id,
+                    ProfessoresId = professores.Single(p => p.Name == "Cuthbert Binns").Id
+                },
+                new ProfessorMateria { MateriasId = 
+                    materias.Single(m => m.MateriasName == "Defesa Contra as Artes das Trevas").Id,
+                    ProfessoresId = professores.Single(p => p.Name == "Quirino Quirrell").Id
+                },
+                new ProfessorMateria { MateriasId = 
+                    materias.Single(m => m.MateriasName == "Astronomia").Id,
+                    ProfessoresId = professores.Single(p => p.Name == "Aurora Sinistra").Id
+                },
+                new ProfessorMateria { MateriasId = 
+                    materias.Single(m => m.MateriasName == "Herbologia").Id,
+                    ProfessoresId = professores.Single(p => p.Name == "Pomona Sprout").Id
+                }
+                
+            };
+
+            foreach (ProfessorMateria pm in professomateria)
+            {
+                context.ProfessorMateria.Add(pm);
+            }
+
+            context.SaveChanges();
+            
             var provas = new Provas[]
             {
                 new Provas {

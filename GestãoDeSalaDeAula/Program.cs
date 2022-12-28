@@ -45,7 +45,7 @@ namespace GestãoDeSalaDeAula
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Alunoes}/{action=Index}/{id?}");
+                pattern: "{controller=Alunos}/{action=Index}/{id?}");
 
             app.Run();
         }

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<GestãoDeSalaDeAula.Models.Professores>
+
+@{
+    ViewData["title"] = "Professores";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="DeleteConfirm" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -4,13 +4,13 @@
     ViewData["title"] = "Criar";
 }
 
-<h1>@Html.DisplayFor(Model => Model.aluno.Name)</h1>
+<h1>@Html.DisplayFor(Model => Model.aluno!.Name)</h1>
 
 <div class="linha">
     <div class="boxLinha">
         <form asp-action="Create">
-        <input type="hidden" asp-for="aluno.Id" />
-        <input type="hidden" asp-for="aluno.Name" />
+        <input type="hidden" asp-for="aluno!.Id" />
+        <input type="hidden" asp-for="aluno!.Name" />
         <select class="select" asp-for="provas!.MateriasId" asp-items="ViewBag.MateriasId" required>
             <option value="">-Selecione a materia-</option>
         </select>
