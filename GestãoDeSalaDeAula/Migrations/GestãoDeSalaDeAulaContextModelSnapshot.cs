@@ -50,12 +50,7 @@ namespace GestãoDeSalaDeAula.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("ProfessoresId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProfessoresId");
 
                     b.ToTable("Materias", (string)null);
                 });
@@ -70,7 +65,8 @@ namespace GestãoDeSalaDeAula.Migrations
 
                     b.HasKey("MateriasId", "ProfessoresId");
 
-                    b.HasIndex("ProfessoresId");
+                    b.HasIndex("ProfessoresId")
+                        .IsUnique();
 
                     b.ToTable("ProfessorMateria", (string)null);
                 });
@@ -83,10 +79,15 @@ namespace GestãoDeSalaDeAula.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("MateriasId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MateriasId");
 
                     b.ToTable("Professores", (string)null);
                 });
@@ -117,13 +118,6 @@ namespace GestãoDeSalaDeAula.Migrations
                     b.ToTable("Provas", (string)null);
                 });
 
-            modelBuilder.Entity("GestãoDeSalaDeAula.Models.Materias", b =>
-                {
-                    b.HasOne("GestãoDeSalaDeAula.Models.Professores", null)
-                        .WithMany("Materias")
-                        .HasForeignKey("ProfessoresId");
-                });
-
             modelBuilder.Entity("GestãoDeSalaDeAula.Models.ProfessorMateria", b =>
                 {
                     b.HasOne("GestãoDeSalaDeAula.Models.Materias", "Materia")
@@ -133,14 +127,23 @@ namespace GestãoDeSalaDeAula.Migrations
                         .IsRequired();
 
                     b.HasOne("GestãoDeSalaDeAula.Models.Professores", "Professor")
-                        .WithMany()
-                        .HasForeignKey("ProfessoresId")
+                        .WithOne("ProfessorMateria")
+                        .HasForeignKey("GestãoDeSalaDeAula.Models.ProfessorMateria", "ProfessoresId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Materia");
 
                     b.Navigation("Professor");
+                });
+
+            modelBuilder.Entity("GestãoDeSalaDeAula.Models.Professores", b =>
+                {
+                    b.HasOne("GestãoDeSalaDeAula.Models.Materias", "Materias")
+                        .WithMany()
+                        .HasForeignKey("MateriasId");
+
+                    b.Navigation("Materias");
                 });
 
             modelBuilder.Entity("GestãoDeSalaDeAula.Models.Provas", b =>
@@ -176,7 +179,7 @@ namespace GestãoDeSalaDeAula.Migrations
 
             modelBuilder.Entity("GestãoDeSalaDeAula.Models.Professores", b =>
                 {
-                    b.Navigation("Materias");
+                    b.Navigation("ProfessorMateria");
                 });
 #pragma warning restore 612, 618
         }

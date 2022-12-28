@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GestãoDeSalaDeAula.Models.Professores>
+﻿@model IEnumerable<GestãoDeSalaDeAula.Models.ViewModel.ProfessoresViewModel>
 
 @{
     ViewData["title"] = "Professores";
@@ -8,7 +8,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(Model => Model.Name)
+                Nome
+            </th>
+            <th>
+                Materia
             </th>
             <th></th>
         </tr>
@@ -18,10 +21,14 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.ProfessorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Materia)
                 </td>
                 <td>
                     <a asp-action="DeleteConfirm" asp-route-id="@item.Id">Deletar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
                 </td>
             </tr>
         }

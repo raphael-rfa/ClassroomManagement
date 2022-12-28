@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public ICollection<Materias>? Materias { get; set; }
+        public Materias? Materias { get; set; }
+        public ProfessorMateria? ProfessorMateria { get; set; }
     }
 }

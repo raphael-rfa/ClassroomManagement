@@ -2,7 +2,8 @@
 {
     public class ProfessoresViewModel
     {
-        public Professores? Professor { get; set; }
-        public ProfessorMateria? ProfessorMateria { get; set; }
+        public int Id { get; set; }
+        public string? ProfessorName { get; set; }
+        public string? Materia { get; set; }
     }
 }
