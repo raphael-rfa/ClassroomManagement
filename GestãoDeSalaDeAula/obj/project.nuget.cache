@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OKpwDYCORgiF2K6g4FTl+B/K9KGI5mEN83bzQ5uxIzJ9ZUjxEOqayd24WsZTSDgiXtn82uNauzgW+jKKuOL1jw==",
+  "dgSpecHash": "mhn9RIgTqRysm/BIi8+X4z2ZX5A7uNNLS8Sm2vFETrOWUaBUUcmtZvTH7fXriSvevV4IiH3yGmjcWUfZXT6o3A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\55389\\OneDrive\\Área de Trabalho\\csharp\\asp-net\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula.csproj",
+  "projectFilePath": "C:\\Users\\55389\\source\\repos\\GestaoDeSalaDeAula\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\55389\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\55389\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

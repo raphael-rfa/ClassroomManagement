@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\55389\\OneDrive\\Área de Trabalho\\csharp\\asp-net\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula.csproj": {}
+    "C:\\Users\\55389\\source\\repos\\GestaoDeSalaDeAula\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula.csproj": {}
   },
   "projects": {
-    "C:\\Users\\55389\\OneDrive\\Área de Trabalho\\csharp\\asp-net\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula.csproj": {
+    "C:\\Users\\55389\\source\\repos\\GestaoDeSalaDeAula\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\55389\\OneDrive\\Área de Trabalho\\csharp\\asp-net\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula.csproj",
+        "projectUniqueName": "C:\\Users\\55389\\source\\repos\\GestaoDeSalaDeAula\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula.csproj",
         "projectName": "GestãoDeSalaDeAula",
-        "projectPath": "C:\\Users\\55389\\OneDrive\\Área de Trabalho\\csharp\\asp-net\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula.csproj",
+        "projectPath": "C:\\Users\\55389\\source\\repos\\GestaoDeSalaDeAula\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula.csproj",
         "packagesPath": "C:\\Users\\55389\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\55389\\OneDrive\\Área de Trabalho\\csharp\\asp-net\\GestãoDeSalaDeAula\\GestãoDeSalaDeAula\\obj\\",
+        "outputPath": "C:\\Users\\55389\\source\\repos\\GestaoDeSalaDeAula\\GestãoDeSalaDeAula\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\55389\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -78,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
