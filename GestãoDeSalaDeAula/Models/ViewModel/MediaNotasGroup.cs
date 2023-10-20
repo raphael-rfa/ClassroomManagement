@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GestãoDeSalaDeAula.Models.ViewModel
+namespace ClassroomManagement.Models.ViewModel
 {
     public class MediaNotasGroup
     {

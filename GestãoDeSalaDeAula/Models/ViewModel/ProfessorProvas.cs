@@ -1,17 +1,17 @@
-﻿namespace GestãoDeSalaDeAula.Models.ViewModel
+﻿namespace ClassroomManagement.Models.ViewModel
 {
     public class ProfessorProvas
     {
 
-        public Professores? Professores { get; set; }
-        public Materias? Materias { get; set; }
-        public Alunos? Alunos { get; set; }
+        public Professor? Professores { get; set; }
+        public Subject? Materias { get; set; }
+        public Student? Alunos { get; set; }
 
-        public static implicit operator ProfessorProvas?(Professores? v)
+        public static implicit operator ProfessorProvas?(Professor? v)
         {
             ProfessorProvas p = new ProfessorProvas() 
             {
-                Professores = v, Materias = v!.ProfessorMateria.Materia
+                Professores = v, Materias = v!.ProfessorSubject.Subject
             };
             return p;
             throw new NotImplementedException();

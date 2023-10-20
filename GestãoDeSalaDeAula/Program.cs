@@ -1,18 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using GestãoDeSalaDeAula.Data;
-using GestãoDeSalaDeAula.Models;
+using ClassroomManagement.Data;
+using ClassroomManagement.Models;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 
-namespace GestãoDeSalaDeAula
+namespace ClassroomManagement
 {
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<GestãoDeSalaDeAulaContext>(options =>
+            builder.Services.AddDbContext<ClassroomManagementContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'GestãoDeSalaDeAulaContext' not found.")));
 
             // Add services to the container.
@@ -24,7 +24,7 @@ namespace GestãoDeSalaDeAula
             {
                 var services = scope.ServiceProvider;
 
-                var context = services.GetRequiredService<GestãoDeSalaDeAulaContext>();
+                var context = services.GetRequiredService<ClassroomManagementContext>();
                 SeedData.Initialize(context);
             }
 

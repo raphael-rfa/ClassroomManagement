@@ -1,4 +1,4 @@
-﻿@model GestãoDeSalaDeAula.Models.Alunos
+﻿@model ClassroomManagement.Models.Student
 
 @{
     ViewData["Title"] = "Deletar";
@@ -23,9 +23,9 @@
         </dt>
         <dd>
             @{
-                foreach (var item in Model.Provas!)
+                foreach (var item in Model.Exams!)
                 {
-                    soma += item.Nota;
+                    soma += item.Score;
                 }
                 media = soma / 7;
             }

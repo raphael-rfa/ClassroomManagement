@@ -1,477 +1,477 @@
-﻿using GestãoDeSalaDeAula.Models;
+﻿using ClassroomManagement.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace GestãoDeSalaDeAula.Data
+namespace ClassroomManagement.Data
 {
     public static class SeedData
     {
-        public static void Initialize(GestãoDeSalaDeAulaContext context)
+        public static void Initialize(ClassroomManagementContext context)
         {
             context.Database.EnsureCreated();
 
-            if (context.Alunos.Any())
+            if (context.Students.Any())
             {
                 return;//Banco de dados já foi semeado
             }           
 
-            var alunos = new Alunos[]
+            var alunos = new Student[]
             {
-                new Alunos { Name = "Hermione Granger"},
-                new Alunos { Name = "Harry Potter"},
-                new Alunos { Name = "Ronald Weasley"},
-                new Alunos { Name = "Dino Thomas"},
-                new Alunos { Name = "Neville Longbottom"},
-                new Alunos { Name = "Simas Finnigan"},
-                new Alunos { Name = "Lilá Brown"},
-                new Alunos { Name = "Parvati Patil"},
-                new Alunos { Name = "Fay Dunbar"},
-                new Alunos { Name = "Kellah"}
+                new Student { Name = "Hermione Granger"},
+                new Student { Name = "Harry Potter"},
+                new Student { Name = "Ronald Weasley"},
+                new Student { Name = "Dino Thomas"},
+                new Student { Name = "Neville Longbottom"},
+                new Student { Name = "Simas Finnigan"},
+                new Student { Name = "Lilá Brown"},
+                new Student { Name = "Parvati Patil"},
+                new Student { Name = "Fay Dunbar"},
+                new Student { Name = "Kellah"}
             };
 
-            foreach (Alunos aluno in alunos)
+            foreach (Student aluno in alunos)
             {
-                context.Alunos.Add(aluno);
+                context.Students.Add(aluno);
             }
             context.SaveChanges();
             
-            var professores = new Professores[]
+            var professores = new Professor[]
             {
-                new Professores { Name = "Minerva McGonagall"},
-                new Professores { Name = "Filius Flitwick"},
-                new Professores { Name = "Severo Snape"},
-                new Professores { Name = "Cuthbert Binns"},
-                new Professores { Name = "Quirino Quirrell"},
-                new Professores { Name = "Aurora Sinistra"},
-                new Professores { Name = "Pomona Sprout"}
+                new Professor { Name = "Minerva McGonagall"},
+                new Professor { Name = "Filius Flitwick"},
+                new Professor { Name = "Severo Snape"},
+                new Professor { Name = "Cuthbert Binns"},
+                new Professor { Name = "Quirino Quirrell"},
+                new Professor { Name = "Aurora Sinistra"},
+                new Professor { Name = "Pomona Sprout"}
             };
 
-            foreach (Professores professor in professores)
+            foreach (Professor professor in professores)
             {
-                context.Professores.Add(professor);
+                context.Professors.Add(professor);
             }
             context.SaveChanges();
 
-            var materias = new Materias[]
+            var materias = new Subject[]
             {
-                new Materias { MateriasName = "Transfiguração"},
-                new Materias { MateriasName = "Feitiços"},
-                new Materias { MateriasName = "Poções"},
-                new Materias { MateriasName = "Historia da Magia"},
-                new Materias { MateriasName = "Defesa Contra as Artes das Trevas"},
-                new Materias { MateriasName = "Astronomia"},
-                new Materias { MateriasName = "Herbologia"}
+                new Subject { SubjectName = "Transfiguração"},
+                new Subject { SubjectName = "Feitiços"},
+                new Subject { SubjectName = "Poções"},
+                new Subject { SubjectName = "Historia da Magia"},
+                new Subject { SubjectName = "Defesa Contra as Artes das Trevas"},
+                new Subject { SubjectName = "Astronomia"},
+                new Subject { SubjectName = "Herbologia"}
             };
 
-            foreach (Materias m in materias)
+            foreach (Subject m in materias)
             {
-                context.Materias.Add(m);
+                context.Subjects.Add(m);
             }
             context.SaveChanges();
 
 
-            var professomateria = new ProfessorMateria[]
+            var professomateria = new ProfessorSubject[]
             {
-                new ProfessorMateria { MateriasId = 
-                    materias.Single(m => m.MateriasName == "Transfiguração").Id,
-                    ProfessoresId = professores.Single(p => p.Name == "Minerva McGonagall").Id
+                new ProfessorSubject { SubjectId = 
+                    materias.Single(m => m.SubjectName == "Transfiguração").Id,
+                    ProfessorId = professores.Single(p => p.Name == "Minerva McGonagall").Id
                 },
-                new ProfessorMateria { MateriasId = 
-                    materias.Single(m => m.MateriasName == "Feitiços").Id,
-                    ProfessoresId = professores.Single(p => p.Name == "Filius Flitwick").Id
+                new ProfessorSubject { SubjectId = 
+                    materias.Single(m => m.SubjectName == "Feitiços").Id,
+                    ProfessorId = professores.Single(p => p.Name == "Filius Flitwick").Id
                 },
-                new ProfessorMateria { MateriasId = 
-                    materias.Single(m => m.MateriasName == "Poções").Id,
-                    ProfessoresId = professores.Single(p => p.Name == "Severo Snape").Id
+                new ProfessorSubject { SubjectId = 
+                    materias.Single(m => m.SubjectName == "Poções").Id,
+                    ProfessorId = professores.Single(p => p.Name == "Severo Snape").Id
                 },
-                new ProfessorMateria { MateriasId = 
-                    materias.Single(m => m.MateriasName == "Historia da Magia").Id,
-                    ProfessoresId = professores.Single(p => p.Name == "Cuthbert Binns").Id
+                new ProfessorSubject { SubjectId = 
+                    materias.Single(m => m.SubjectName == "Historia da Magia").Id,
+                    ProfessorId = professores.Single(p => p.Name == "Cuthbert Binns").Id
                 },
-                new ProfessorMateria { MateriasId = 
-                    materias.Single(m => m.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    ProfessoresId = professores.Single(p => p.Name == "Quirino Quirrell").Id
+                new ProfessorSubject { SubjectId = 
+                    materias.Single(m => m.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    ProfessorId = professores.Single(p => p.Name == "Quirino Quirrell").Id
                 },
-                new ProfessorMateria { MateriasId = 
-                    materias.Single(m => m.MateriasName == "Astronomia").Id,
-                    ProfessoresId = professores.Single(p => p.Name == "Aurora Sinistra").Id
+                new ProfessorSubject { SubjectId = 
+                    materias.Single(m => m.SubjectName == "Astronomia").Id,
+                    ProfessorId = professores.Single(p => p.Name == "Aurora Sinistra").Id
                 },
-                new ProfessorMateria { MateriasId = 
-                    materias.Single(m => m.MateriasName == "Herbologia").Id,
-                    ProfessoresId = professores.Single(p => p.Name == "Pomona Sprout").Id
+                new ProfessorSubject { SubjectId = 
+                    materias.Single(m => m.SubjectName == "Herbologia").Id,
+                    ProfessorId = professores.Single(p => p.Name == "Pomona Sprout").Id
                 }
                 
             };
 
-            foreach (ProfessorMateria pm in professomateria)
+            foreach (ProfessorSubject pm in professomateria)
             {
-                context.ProfessorMateria.Add(pm);
+                context.ProfessorsSubjects.Add(pm);
             }
 
             context.SaveChanges();
             
-            var provas = new Provas[]
+            var provas = new Exam[]
             {
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Hermione Granger").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Transfiguração").Id,
-                    Nota = 10
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Hermione Granger").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Feitiços").Id,
-                    Nota = 10
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Hermione Granger").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Poções").Id,
-                    Nota = 10
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Hermione Granger").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Historia da Magia").Id,
-                    Nota = 10
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Hermione Granger").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    Nota = 10
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Hermione Granger").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Astronomia").Id,
-                    Nota = 10
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Hermione Granger").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Herbologia").Id,
-                    Nota = 10
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Harry Potter").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Transfiguração").Id,
-                    Nota = 9.1
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Harry Potter").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Feitiços").Id,
-                    Nota = 9.8
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Harry Potter").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Poções").Id,
-                    Nota = 4.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Harry Potter").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Historia da Magia").Id,
-                    Nota = 6.3
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Harry Potter").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    Nota = 10
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Harry Potter").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Astronomia").Id,
-                    Nota = 8.7
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Harry Potter").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Herbologia").Id,
-                    Nota = 8.4
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Transfiguração").Id,
-                    Nota = 8.9 
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Feitiços").Id,
-                    Nota = 7.8
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Poções").Id,
-                    Nota = 5.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Historia da Magia").Id,
-                    Nota = 6.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    Nota = 10
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Astronomia").Id,
-                    Nota = 7.5
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Herbologia").Id,
-                    Nota = 6.8
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Dino Thomas").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Transfiguração").Id,
-                    Nota = 7.1
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Dino Thomas").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Feitiços").Id,
-                    Nota = 7
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Dino Thomas").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Poções").Id,
-                    Nota = 6.4
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Dino Thomas").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Historia da Magia").Id,
-                    Nota = 8
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Dino Thomas").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    Nota = 8.3
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Dino Thomas").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Astronomia").Id,
-                    Nota = 7.6
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Dino Thomas").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Herbologia").Id,
-                    Nota = 7
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Transfiguração").Id,
-                    Nota = 6.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Feitiços").Id,
-                    Nota = 7.3
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Poções").Id,
-                    Nota = 0
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Historia da Magia").Id,
-                    Nota = 8.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    Nota = 7.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Astronomia").Id,
-                    Nota = 6.4
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Herbologia").Id,
-                    Nota = 10
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Transfiguração").Id,
-                    Nota = 7.4
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Feitiços").Id,
-                    Nota = 4.5
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Poções").Id,
-                    Nota = 3.2
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Historia da Magia").Id,
-                    Nota = 8.7
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    Nota = 8.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Astronomia").Id,
-                    Nota = 7.8
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Herbologia").Id,
-                    Nota = 5.4
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Lilá Brown").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Transfiguração").Id,
-                    Nota = 9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Lilá Brown").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Feitiços").Id,
-                    Nota = 8.5
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Lilá Brown").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Poções").Id,
-                    Nota = 8.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Lilá Brown").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Historia da Magia").Id,
-                    Nota = 9.6
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Lilá Brown").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    Nota = 8
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Lilá Brown").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Astronomia").Id,
-                    Nota = 7.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Lilá Brown").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Herbologia").Id,
-                    Nota = 6.4
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Parvati Patil").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Transfiguração").Id,
-                    Nota = 9.5
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Parvati Patil").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Feitiços").Id,
-                    Nota = 9.1
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Parvati Patil").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Poções").Id,
-                    Nota = 8.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Parvati Patil").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Historia da Magia").Id,
-                    Nota = 8.5
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Parvati Patil").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    Nota = 6.4
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Parvati Patil").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Astronomia").Id,
-                    Nota = 7.9
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Parvati Patil").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Herbologia").Id,
-                    Nota = 5.5
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Transfiguração").Id,
-                    Nota = 3.4
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Feitiços").Id,
-                    Nota = 2
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Poções").Id,
-                    Nota = 7
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Historia da Magia").Id,
-                    Nota = 5.6
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    Nota = 4.7
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Astronomia").Id,
-                    Nota = 7.8
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Herbologia").Id,
-                    Nota = 8.1
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Kellah").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Transfiguração").Id,
-                    Nota = 5.3
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Kellah").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Feitiços").Id,
-                    Nota = 7.6
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Kellah").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Poções").Id,
-                    Nota = 8.3
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Kellah").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Historia da Magia").Id,
-                    Nota = 3
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Kellah").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Defesa Contra as Artes das Trevas").Id,
-                    Nota = 4
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Kellah").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Astronomia").Id,
-                    Nota = 9.3
-                },
-                new Provas {
-                    AlunosId = alunos.Single(a => a.Name == "Kellah").Id,
-                    MateriasId = materias.Single(a => a.MateriasName == "Herbologia").Id,
-                    Nota = 8
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Hermione Granger").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Transfiguração").Id,
+                    Score = 10
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Hermione Granger").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Feitiços").Id,
+                    Score = 10
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Hermione Granger").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Poções").Id,
+                    Score = 10
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Hermione Granger").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Historia da Magia").Id,
+                    Score = 10
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Hermione Granger").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    Score = 10
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Hermione Granger").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Astronomia").Id,
+                    Score = 10
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Hermione Granger").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Herbologia").Id,
+                    Score = 10
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Harry Potter").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Transfiguração").Id,
+                    Score = 9.1
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Harry Potter").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Feitiços").Id,
+                    Score = 9.8
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Harry Potter").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Poções").Id,
+                    Score = 4.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Harry Potter").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Historia da Magia").Id,
+                    Score = 6.3
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Harry Potter").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    Score = 10
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Harry Potter").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Astronomia").Id,
+                    Score = 8.7
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Harry Potter").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Herbologia").Id,
+                    Score = 8.4
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Transfiguração").Id,
+                    Score = 8.9 
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Feitiços").Id,
+                    Score = 7.8
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Poções").Id,
+                    Score = 5.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Historia da Magia").Id,
+                    Score = 6.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    Score = 10
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Astronomia").Id,
+                    Score = 7.5
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Ronald Weasley").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Herbologia").Id,
+                    Score = 6.8
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Dino Thomas").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Transfiguração").Id,
+                    Score = 7.1
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Dino Thomas").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Feitiços").Id,
+                    Score = 7
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Dino Thomas").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Poções").Id,
+                    Score = 6.4
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Dino Thomas").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Historia da Magia").Id,
+                    Score = 8
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Dino Thomas").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    Score = 8.3
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Dino Thomas").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Astronomia").Id,
+                    Score = 7.6
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Dino Thomas").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Herbologia").Id,
+                    Score = 7
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Transfiguração").Id,
+                    Score = 6.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Feitiços").Id,
+                    Score = 7.3
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Poções").Id,
+                    Score = 0
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Historia da Magia").Id,
+                    Score = 8.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    Score = 7.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Astronomia").Id,
+                    Score = 6.4
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Neville Longbottom").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Herbologia").Id,
+                    Score = 10
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Transfiguração").Id,
+                    Score = 7.4
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Feitiços").Id,
+                    Score = 4.5
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Poções").Id,
+                    Score = 3.2
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Historia da Magia").Id,
+                    Score = 8.7
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    Score = 8.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Astronomia").Id,
+                    Score = 7.8
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Simas Finnigan").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Herbologia").Id,
+                    Score = 5.4
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Lilá Brown").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Transfiguração").Id,
+                    Score = 9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Lilá Brown").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Feitiços").Id,
+                    Score = 8.5
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Lilá Brown").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Poções").Id,
+                    Score = 8.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Lilá Brown").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Historia da Magia").Id,
+                    Score = 9.6
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Lilá Brown").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    Score = 8
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Lilá Brown").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Astronomia").Id,
+                    Score = 7.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Lilá Brown").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Herbologia").Id,
+                    Score = 6.4
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Parvati Patil").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Transfiguração").Id,
+                    Score = 9.5
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Parvati Patil").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Feitiços").Id,
+                    Score = 9.1
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Parvati Patil").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Poções").Id,
+                    Score = 8.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Parvati Patil").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Historia da Magia").Id,
+                    Score = 8.5
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Parvati Patil").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    Score = 6.4
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Parvati Patil").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Astronomia").Id,
+                    Score = 7.9
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Parvati Patil").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Herbologia").Id,
+                    Score = 5.5
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Transfiguração").Id,
+                    Score = 3.4
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Feitiços").Id,
+                    Score = 2
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Poções").Id,
+                    Score = 7
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Historia da Magia").Id,
+                    Score = 5.6
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    Score = 4.7
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Astronomia").Id,
+                    Score = 7.8
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Fay Dunbar").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Herbologia").Id,
+                    Score = 8.1
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Kellah").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Transfiguração").Id,
+                    Score = 5.3
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Kellah").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Feitiços").Id,
+                    Score = 7.6
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Kellah").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Poções").Id,
+                    Score = 8.3
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Kellah").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Historia da Magia").Id,
+                    Score = 3
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Kellah").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Defesa Contra as Artes das Trevas").Id,
+                    Score = 4
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Kellah").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Astronomia").Id,
+                    Score = 9.3
+                },
+                new Exam {
+                    StudentId = alunos.Single(a => a.Name == "Kellah").Id,
+                    SubjectId = materias.Single(a => a.SubjectName == "Herbologia").Id,
+                    Score = 8
                 }
             };
 
-            foreach (Provas p in provas)
+            foreach (Exam p in provas)
             {
-                var ProvasNoBanco = context.Provas.Where(
+                var ProvasNoBanco = context.Exams.Where(
                     s =>
-                            s.Aluno.Id == p.AlunosId &&
-                            s.Materia.Id == p.MateriasId).SingleOrDefault();
+                            s.Student.Id == p.StudentId &&
+                            s.Subject.Id == p.SubjectId).SingleOrDefault();
                 if (ProvasNoBanco == null)
                 {
-                    context.Provas.Add(p);
+                    context.Exams.Add(p);
                 }
             }
             context.SaveChanges();

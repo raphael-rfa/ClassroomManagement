@@ -1,4 +1,4 @@
-﻿@model GestãoDeSalaDeAula.Models.Alunos
+﻿@model ClassroomManagement.Models.Student
 
 @{
     ViewData["Title"] = "Detalhes";
@@ -24,9 +24,9 @@
         </dt>
         <dd>
             @{
-                foreach(var item in Model.Provas!)
+                foreach(var item in Model.Exams!)
                 {
-                    soma += item.Nota;
+                    soma += item.Score;
                 }
                 media = soma / 7;
             }
@@ -43,18 +43,18 @@
                     <th>Nota</th>
                     <th></th>
                 </tr>
-                @foreach(var item in Model.Provas!)
+                @foreach(var item in Model.Exams!)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelitem => item.Materia!.MateriasName)
+                            @Html.DisplayFor(modelitem => item.Subject!.SubjectName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Nota)
+                            @Html.DisplayFor(modelItem => item.Score)
                         </td>
                         <td>
-                            <a asp-controller="AlunoViewModel" asp-action="Edit" asp-route-id="@item.ProvasId">Editar</a> |
-                            <a asp-controller="AlunoViewModel" asp-action="Delete" asp-route-id="@item.ProvasId">Deletar</a>                            
+                            <a asp-controller="AlunoViewModel" asp-action="Edit" asp-route-id="@item.ExamId">Editar</a> |
+                            <a asp-controller="AlunoViewModel" asp-action="Delete" asp-route-id="@item.ExamId">Deletar</a>                            
                         </td>
                     </tr> 
                 }

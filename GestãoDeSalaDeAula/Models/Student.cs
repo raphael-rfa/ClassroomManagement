@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GestãoDeSalaDeAula.Models
+namespace ClassroomManagement.Models
 {
-    public class Alunos
+    public class Student
     {
         public int Id { get; set; }
         [Display(Name = "Nome completo")]
         public string? Name { get; set; }
         
-        public ICollection<Provas>? Provas { get; set; }
+        public ICollection<Exam>? Exams { get; set; }
     }
 }

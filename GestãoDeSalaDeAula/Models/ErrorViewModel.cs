@@ -1,4 +1,4 @@
-namespace GestãoDeSalaDeAula.Models
+namespace ClassroomManagement.Models
 {
     public class ErrorViewModel
     {

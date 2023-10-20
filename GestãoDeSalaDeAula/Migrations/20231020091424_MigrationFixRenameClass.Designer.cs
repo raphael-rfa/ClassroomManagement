@@ -4,6 +4,7 @@ using ClassroomManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClassroomManagement.Migrations
 {
     [DbContext(typeof(ClassroomManagementContext))]
-    partial class GestãoDeSalaDeAulaContextModelSnapshot : ModelSnapshot
+    [Migration("20231020091424_MigrationFixRenameClass")]
+    partial class MigrationFixRenameClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +48,7 @@ namespace ClassroomManagement.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("Exam", (string)null);
+                    b.ToTable("Exams", (string)null);
                 });
 
             modelBuilder.Entity("ClassroomManagement.Models.Professor", b =>
@@ -66,7 +69,7 @@ namespace ClassroomManagement.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("Professor", (string)null);
+                    b.ToTable("Professors", (string)null);
                 });
 
             modelBuilder.Entity("ClassroomManagement.Models.ProfessorSubject", b =>
@@ -82,7 +85,7 @@ namespace ClassroomManagement.Migrations
                     b.HasIndex("ProfessorId")
                         .IsUnique();
 
-                    b.ToTable("ProfessoSubject", (string)null);
+                    b.ToTable("ProfessorSubjects", (string)null);
                 });
 
             modelBuilder.Entity("ClassroomManagement.Models.Student", b =>
@@ -98,7 +101,7 @@ namespace ClassroomManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Student", (string)null);
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("ClassroomManagement.Models.Subject", b =>
@@ -115,7 +118,7 @@ namespace ClassroomManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subject", (string)null);
+                    b.ToTable("Subjects", (string)null);
                 });
 
             modelBuilder.Entity("ClassroomManagement.Models.Exam", b =>

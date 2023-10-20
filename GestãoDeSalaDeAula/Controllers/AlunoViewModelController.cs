@@ -1,17 +1,17 @@
-﻿using GestãoDeSalaDeAula.Data;
-using GestãoDeSalaDeAula.Models;
-using GestãoDeSalaDeAula.Models.ViewModel;
+﻿using ClassroomManagement.Data;
+using ClassroomManagement.Models;
+using ClassroomManagement.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace GestãoDeSalaDeAula.Controllers
+namespace ClassroomManagement.Controllers
 {
     public class AlunoViewModelController : Controller
     {
-        private readonly GestãoDeSalaDeAulaContext? _context;
+        private readonly ClassroomManagementContext? _context;
 
-        public AlunoViewModelController(GestãoDeSalaDeAulaContext? context)
+        public AlunoViewModelController(ClassroomManagementContext? context)
         {
             _context = context;
         }
@@ -24,8 +24,8 @@ namespace GestãoDeSalaDeAula.Controllers
         public async Task<IActionResult> Create(int Id)
         {
 
-            AlunoViewModel aluno = await _context.Alunos.FindAsync(Id);
-            ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName");
+            AlunoViewModel aluno = await _context.Students.FindAsync(Id);
+            ViewData["MateriasId"] = new SelectList(_context.Subjects, "Id", "MateriasName");
             return View(aluno);
         }
 
@@ -35,29 +35,29 @@ namespace GestãoDeSalaDeAula.Controllers
         {
             if (ModelState.IsValid)
             {
-                Provas provas = notas.provas;
-                provas.AlunosId = notas.aluno.Id;
-                _context!.Provas.Add(provas);
+                Exam provas = notas.provas;
+                provas.StudentId = notas.aluno.Id;
+                _context!.Exams.Add(provas);
                 await _context.SaveChangesAsync();
-                ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName");
+                ViewData["MateriasId"] = new SelectList(_context.Subjects, "Id", "MateriasName");
                 return View(notas);
             }
-            ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "MateriasName");
+            ViewData["MateriasId"] = new SelectList(_context.Subjects, "Id", "MateriasName");
             return View(notas);
         }
 
         public async Task<IActionResult> Edit(int id)
         {
-            if (_context.Provas == null)
+            if (_context.Exams == null)
             {
                 return NotFound();
             }
 
-            AlunoViewModel prova = await _context.Provas
-                .Include(a => a.Aluno)
-                .Include(m => m.Materia)
+            AlunoViewModel prova = await _context.Exams
+                .Include(a => a.Student)
+                .Include(m => m.Subject)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ProvasId == id);
+                .FirstOrDefaultAsync(m => m.ExamId == id);
             if (prova == null)
             {
                 return NotFound();
@@ -69,9 +69,9 @@ namespace GestãoDeSalaDeAula.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, AlunoViewModel ProvasAluno)
         {
-            Provas prova = ProvasAluno.provas;
-            prova.AlunosId = ProvasAluno.provas.Aluno.Id;
-            if (id != prova.ProvasId)
+            Exam prova = ProvasAluno.provas;
+            prova.StudentId = ProvasAluno.provas.Student.Id;
+            if (id != prova.ExamId)
             {
                 return NotFound();
             }
@@ -85,7 +85,7 @@ namespace GestãoDeSalaDeAula.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProvaExists(prova.ProvasId))
+                    if (!ProvaExists(prova.ExamId))
                     {
                         return NotFound();
                     }
@@ -102,22 +102,22 @@ namespace GestãoDeSalaDeAula.Controllers
 
         private bool ProvaExists(int id)
         {
-            return (_context.Provas?.Any(e => e.ProvasId == id)).GetValueOrDefault();
+            return (_context.Exams?.Any(e => e.ExamId == id)).GetValueOrDefault();
         }
 
         //HTTP Get Delete        
         public async Task<IActionResult> Delete(int id)
         {
-            if (_context.Provas == null)
+            if (_context.Exams == null)
             {
                 return NotFound();
             }
 
-            AlunoViewModel prova = await _context.Provas
-                .Include(a => a.Aluno)
-                .Include(m => m.Materia)
+            AlunoViewModel prova = await _context.Exams
+                .Include(a => a.Student)
+                .Include(m => m.Subject)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ProvasId == id);
+                .FirstOrDefaultAsync(m => m.ExamId == id);
             if (prova == null)
             {
                 return NotFound();
@@ -130,9 +130,9 @@ namespace GestãoDeSalaDeAula.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, AlunoViewModel ProvasAluno)
         {
-            Provas prova = ProvasAluno.provas;
-            prova.AlunosId = ProvasAluno.provas.Aluno.Id;
-            if (id != prova.ProvasId)
+            Exam prova = ProvasAluno.provas;
+            prova.StudentId = ProvasAluno.provas.Student.Id;
+            if (id != prova.ExamId)
             {
                 return NotFound();
             }
@@ -146,7 +146,7 @@ namespace GestãoDeSalaDeAula.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProvaExists(prova.ProvasId))
+                    if (!ProvaExists(prova.ExamId))
                     {
                         return NotFound();
                     }
@@ -156,7 +156,7 @@ namespace GestãoDeSalaDeAula.Controllers
                     }
                 }
                 return RedirectToAction("Details", new RouteValueDictionary(
-                    new { controller = "Alunoes", action = "Details", prova.Aluno.Id }));
+                    new { controller = "Alunoes", action = "Details", prova.Student.Id }));
             }
             return View(prova);
         }

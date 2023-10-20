@@ -1,47 +1,47 @@
-﻿using GestãoDeSalaDeAula.Data;
-using GestãoDeSalaDeAula.Models.ViewModel;
+﻿using ClassroomManagement.Data;
+using ClassroomManagement.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace GestãoDeSalaDeAula.Controllers
+namespace ClassroomManagement.Controllers
 {
     public class ProfessoresController : Controller
     {
-        public readonly GestãoDeSalaDeAulaContext? _context;
+        public readonly ClassroomManagementContext? _context;
 
-        public ProfessoresController(GestãoDeSalaDeAulaContext context)
+        public ProfessoresController(ClassroomManagementContext context)
         {
             _context = context;
         }
         public async Task<IActionResult> Index()
         {
             IQueryable<ProfessoresViewModel> professores =
-                from p in _context.Professores
-                join pm in _context.ProfessorMateria on p.Id equals pm.ProfessoresId
+                from p in _context.Professors
+                join pm in _context.ProfessorsSubjects on p.Id equals pm.ProfessorId
                 select new ProfessoresViewModel
                 {
                     Id = p.Id,
                     ProfessorName = p.Name,
-                    Materia = pm.Materia!.MateriasName
+                    Materia = pm.Subject!.SubjectName
                 };
             
-            return _context!.Professores != null ?
+            return _context!.Professors != null ?
                 View(await professores.AsNoTracking().ToListAsync()) :
                 Problem("_context e nulo .");
         }
 
         public async Task<IActionResult> Details(int id)
         {
-            if(_context!.Professores == null)
+            if(_context!.Professors == null)
             {
                 return NotFound();
             }
 
-            ProfessorProvas professor = await _context.Professores
-                .Include(p => p.ProfessorMateria!)
-                    .ThenInclude(m => m.Materia)
-                        .ThenInclude(p => p.Provas)
-                            .ThenInclude(a => a.Aluno)
+            ProfessorProvas professor = await _context.Professors
+                .Include(p => p.ProfessorSubject!)
+                    .ThenInclude(m => m.Subject)
+                        .ThenInclude(p => p.Exams)
+                            .ThenInclude(a => a.Student)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(p => p.Id == id); 
 

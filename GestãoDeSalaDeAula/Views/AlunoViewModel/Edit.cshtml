@@ -1,17 +1,17 @@
-﻿@model GestãoDeSalaDeAula.Models.ViewModel.AlunoViewModel
+﻿@model ClassroomManagement.Models.ViewModel.AlunoViewModel
 
 @{
     ViewData["title"] = "Editar";
 }
 
 <form asp-action="Edit">
-    <input type="hidden" asp-for="provas.ProvasId"/>
-    <input type="hidden" asp-for="provas.Aluno.Id"/>
-    <label asp-for="provas.Aluno.Id">@Html.DisplayFor(Model => Model.provas.Aluno.Name)</label>
-    <input type="hidden" asp-for="provas.Aluno.Name"/>
-    <label asp-for="provas.MateriasId">@Html.DisplayFor(Model => Model.provas.Materia.MateriasName)</label>
-    <input type="hidden" asp-for="provas.MateriasId" />
-    <input asp-for="provas.Nota"/>
+    <input type="hidden" asp-for="provas.ExamId"/>
+    <input type="hidden" asp-for="provas.Student.Id"/>
+    <label asp-for="provas.Student.Id">@Html.DisplayFor(Model => Model.provas.Student.Name)</label>
+    <input type="hidden" asp-for="provas.Student.Name"/>
+    <label asp-for="provas.SubjectId">@Html.DisplayFor(Model => Model.provas.Subject.SubjectName)</label>
+    <input type="hidden" asp-for="provas.SubjectId" />
+    <input asp-for="provas.Score"/>
     <input type="submit" value="Atualizar"/>
 </form>
 <a asp-controller="Alunoes" asp-action="Details" asp-route-id="@Model.aluno.Id">Voltar</a>

@@ -1,4 +1,4 @@
-﻿@model GestãoDeSalaDeAula.Models.ViewModel.AlunoViewModel
+﻿@model ClassroomManagement.Models.ViewModel.AlunoViewModel
 
 @{
     ViewData["title"] = "Criar";
@@ -11,10 +11,10 @@
         <form asp-action="Create">
         <input type="hidden" asp-for="aluno!.Id" />
         <input type="hidden" asp-for="aluno!.Name" />
-        <select class="select" asp-for="provas!.MateriasId" asp-items="ViewBag.MateriasId" required>
+        <select class="select" asp-for="provas!.SubjectId" asp-items="ViewBag.MateriasId" required>
             <option value="">-Selecione a materia-</option>
         </select>
-        <input asp-for="provas!.Nota" placeholder="Nota" required />
+        <input asp-for="provas!.Score" placeholder="Nota" required />
         <input type="submit" />
     </form>
     </div>

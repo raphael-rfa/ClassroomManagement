@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace GestãoDeSalaDeAula.Migrations
+namespace ClassroomManagement.Migrations
 {
     /// <inheritdoc />
     public partial class InitialRecreate : Migration

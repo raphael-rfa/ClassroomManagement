@@ -1,23 +1,23 @@
-﻿using GestãoDeSalaDeAula.Data;
-using GestãoDeSalaDeAula.Models;
+﻿using ClassroomManagement.Data;
+using ClassroomManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace GestãoDeSalaDeAula.Controllers
+namespace ClassroomManagement.Controllers
 {
     public class MateriasController : Controller
     {
-        public readonly GestãoDeSalaDeAulaContext? _context;
+        public readonly ClassroomManagementContext? _context;
 
-        public MateriasController(GestãoDeSalaDeAulaContext context)
+        public MateriasController(ClassroomManagementContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            return _context!.Materias != null ?
-                View(await _context.Materias.ToListAsync()) :
+            return _context!.Subjects != null ?
+                View(await _context.Subjects.ToListAsync()) :
                 Problem("_context e nulo .");
         }
 
@@ -28,7 +28,7 @@ namespace GestãoDeSalaDeAula.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id, MateriasName")] Materias materias)
+        public async Task<IActionResult> Create([Bind("Id, MateriasName")] Subject materias)
         {
             if(ModelState.IsValid)
             {
@@ -41,12 +41,12 @@ namespace GestãoDeSalaDeAula.Controllers
 
         public async Task<IActionResult> DeleteConfirm(int? id)
         {
-            if(id == null || _context!.Materias == null)
+            if(id == null || _context!.Subjects == null)
             {
                 return NotFound();
             }
 
-            var materias = await _context.Materias
+            var materias = await _context.Subjects
                 .FirstOrDefaultAsync(m => m.Id == id);
             if(materias == null)
             {
@@ -60,14 +60,14 @@ namespace GestãoDeSalaDeAula.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            if(_context!.Materias == null)
+            if(_context!.Subjects == null)
             {
                 return Problem("Contexto Nulo");
             }
-            var materia = await _context.Materias.FindAsync(id);
+            var materia = await _context.Subjects.FindAsync(id);
             if(materia != null)
             {
-                _context.Materias.Remove(materia);
+                _context.Subjects.Remove(materia);
             }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

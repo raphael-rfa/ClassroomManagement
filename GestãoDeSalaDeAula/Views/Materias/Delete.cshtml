@@ -1,4 +1,4 @@
-﻿@model GestãoDeSalaDeAula.Models.Materias
+﻿@model ClassroomManagement.Models.Subject
 
 @{
     ViewData["title"] = "Deletar";
@@ -6,16 +6,16 @@
 
 <dl class="dl">
     <dt>
-        <b>@Html.DisplayNameFor(model => model.MateriasName):</b>
+        <b>@Html.DisplayNameFor(model => model.SubjectName):</b>
     </dt>
     <dd>
-        @Html.DisplayFor(model => model.MateriasName)
+        @Html.DisplayFor(model => model.SubjectName)
     </dd>
 </dl>
 
 <form asp-action="Delete">
     <input type="hidden" asp-for="Id"/>
-    <input asp-for="MateriasName"/>
+    <input asp-for="SubjectName"/>
     <input type="submit" value="Deletar"/>
 </form>
 
