@@ -1,0 +1,29 @@
+﻿@model ClassroomManagement.Models.ViewModel.StudentViewModel
+
+@{
+    ViewData["title"] = "Criar";
+}
+
+<h1>@Html.DisplayFor(Model => Model.Student!.Name)</h1>
+
+<div class="linha">
+    <div class="boxLinha">
+        <form asp-action="Create">
+        <input type="hidden" asp-for="Student!.Id" />
+        <input type="hidden" asp-for="Student!.Name" />
+        <select class="select" asp-for="Exam!.SubjectId" asp-items="ViewBag.MateriasId" required>
+            <option value="">-Selecione a materia-</option>
+        </select>
+        <input asp-for="Exam!.Score" placeholder="Nota" required />
+        <input type="submit" />
+    </form>
+    </div>
+    <div class="boxLinha">
+        <h2>Sobre</h2>
+        <p>Durante os 5 primeiros anos em Hogwarts as materias de Transfiguração, 
+            Feitiços, Poções, Historia da Magia, Defesa Contra as Artes das Trevas, 
+            Astronomia e Herbologia são obrigatórias. Adicione uma nota a cada um e 
+            clique em Ranking para ver a sua classificação no ano.
+        </p>
+    </div>
+</div>

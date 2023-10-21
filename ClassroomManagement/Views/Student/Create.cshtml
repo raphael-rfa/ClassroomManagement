@@ -1,0 +1,42 @@
+﻿@model ClassroomManagement.Models.Student
+
+@{
+    ViewData["Title"] = "Adicionar";
+}
+
+<div class="textHeader">
+    <h1>Inscrição do aluno</h1>
+</div>
+<hr />
+<div class="linha">
+    <div class="boxLinha">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div>
+                <label asp-for="Name"></label>
+                <input asp-for="Name"/>
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div>
+                <input type="submit" value="Inscrever"/>
+            </div>
+        </form>
+    </div>
+    <div class="boxLinha">
+        <h2>Sobre</h2>
+        <p>
+            No mundo de Harry Potter os pais não precisam ir até a escola para increver seus 
+            filhos, quando uma criança nasce com magia seu nome é escrito por uma pena em um 
+            livro grande e quando a criança chega aos 11 anos uma carta é enviada para a casa 
+            dela.
+        </p>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
