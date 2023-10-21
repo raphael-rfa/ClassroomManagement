@@ -1,5 +1,5 @@
-﻿using ClassroomManagement.Data;
-using ClassroomManagement.Models;
+﻿using ClassroomManagement.Domain.Entities;
+using ClassroomManagement.Infrastucture.Context;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

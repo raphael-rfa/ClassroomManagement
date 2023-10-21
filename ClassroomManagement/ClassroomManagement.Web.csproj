@@ -16,4 +16,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ClassroomManagement.Domain\ClassroomManagement.Domain.csproj" />
+    <ProjectReference Include="..\ClassroomManagement.Infrastructure\ClassroomManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

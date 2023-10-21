@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ClassroomManagement.Domain.Entities;
+using ClassroomManagement.Infrastucture.Context;
+using ClassroomManagement.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ClassroomManagement.Data;
-using ClassroomManagement.Models;
-using ClassroomManagement.Models.ViewModel;
-using System.Text.RegularExpressions;
 
 namespace ClassroomManagement.Controllers
 {

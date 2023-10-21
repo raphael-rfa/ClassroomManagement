@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using ClassroomManagement.Data;
-using ClassroomManagement.Models;
-using Microsoft.AspNetCore.Localization;
-using System.Globalization;
+using ClassroomManagement.Infrastucture.Context;
 
 namespace ClassroomManagement
 {

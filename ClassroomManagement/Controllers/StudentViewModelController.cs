@@ -1,6 +1,6 @@
-﻿using ClassroomManagement.Data;
-using ClassroomManagement.Models;
-using ClassroomManagement.Models.ViewModel;
+﻿using ClassroomManagement.Domain.Entities;
+using ClassroomManagement.Infrastucture.Context;
+using ClassroomManagement.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;

@@ -1,5 +1,5 @@
-﻿using ClassroomManagement.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using ClassroomManagement.Domain.Entities;
+using ClassroomManagement.Infrastucture.Context;
 
 namespace ClassroomManagement.Data
 {

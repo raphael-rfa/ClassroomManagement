@@ -6,7 +6,7 @@ namespace ClassroomManagement.Migrations
 {
     /// <inheritdoc />
     public partial class FixTableName : Migration
-    {
+    { 
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
