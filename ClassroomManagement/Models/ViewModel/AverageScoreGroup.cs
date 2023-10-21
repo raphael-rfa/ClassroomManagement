@@ -2,12 +2,12 @@
 
 namespace ClassroomManagement.Models.ViewModel
 {
-    public class MediaNotasGroup
+    public class AverageScoreGroup
     {
         public int Id { get; set; }
         public string? Name { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:0.00}")]
-        public double Media { get; set; }
+        public double Average { get; set; }
     }
 }

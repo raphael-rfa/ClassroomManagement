@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomManagement.Controllers
 {
-    public class MateriasController : Controller
+    public class SubjectController : Controller
     {
         public readonly ClassroomManagementContext? _context;
 
-        public MateriasController(ClassroomManagementContext context)
+        public SubjectController(ClassroomManagementContext context)
         {
             _context = context;
         }

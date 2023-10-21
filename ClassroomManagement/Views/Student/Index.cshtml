@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ClassroomManagement.Models.ViewModel.MediaNotasGroup>
+﻿@model IEnumerable<ClassroomManagement.Models.ViewModel.AverageScoreGroup>
 
 @{
     ViewData["Title"] = "Tabela";
@@ -20,7 +20,7 @@
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Media)
+                    @Html.DisplayNameFor(model => model.Average)
                 </th>
                 <th>
                     <span>1º Ano</span>
@@ -39,7 +39,7 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Media)
+                        @Html.DisplayFor(modelItem => item.Average)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

@@ -5,7 +5,7 @@
 namespace ClassroomManagement.Migrations
 {
     /// <inheritdoc />
-    public partial class renameclass : Migration
+    public partial class RenameClass : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

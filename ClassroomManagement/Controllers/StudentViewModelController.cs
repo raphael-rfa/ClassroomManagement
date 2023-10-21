@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomManagement.Controllers
 {
-    public class AlunoViewModelController : Controller
+    public class StudentViewModelController : Controller
     {
         private readonly ClassroomManagementContext? _context;
 
-        public AlunoViewModelController(ClassroomManagementContext? context)
+        public StudentViewModelController(ClassroomManagementContext? context)
         {
             _context = context;
         }
@@ -24,19 +24,19 @@ namespace ClassroomManagement.Controllers
         public async Task<IActionResult> Create(int Id)
         {
 
-            AlunoViewModel aluno = await _context.Students.FindAsync(Id);
+            StudentViewModel aluno = await _context.Students.FindAsync(Id);
             ViewData["MateriasId"] = new SelectList(_context.Subjects, "Id", "MateriasName");
             return View(aluno);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AlunoViewModel notas)
+        public async Task<IActionResult> Create(StudentViewModel notas)
         {
             if (ModelState.IsValid)
             {
-                Exam provas = notas.provas;
-                provas.StudentId = notas.aluno.Id;
+                Exam provas = notas.Exam;
+                provas.StudentId = notas.Student.Id;
                 _context!.Exams.Add(provas);
                 await _context.SaveChangesAsync();
                 ViewData["MateriasId"] = new SelectList(_context.Subjects, "Id", "MateriasName");
@@ -53,7 +53,7 @@ namespace ClassroomManagement.Controllers
                 return NotFound();
             }
 
-            AlunoViewModel prova = await _context.Exams
+            StudentViewModel prova = await _context.Exams
                 .Include(a => a.Student)
                 .Include(m => m.Subject)
                 .AsNoTracking()
@@ -67,10 +67,10 @@ namespace ClassroomManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, AlunoViewModel ProvasAluno)
+        public async Task<IActionResult> Edit(int id, StudentViewModel ProvasAluno)
         {
-            Exam prova = ProvasAluno.provas;
-            prova.StudentId = ProvasAluno.provas.Student.Id;
+            Exam prova = ProvasAluno.Exam;
+            prova.StudentId = ProvasAluno.Exam.Student.Id;
             if (id != prova.ExamId)
             {
                 return NotFound();
@@ -113,7 +113,7 @@ namespace ClassroomManagement.Controllers
                 return NotFound();
             }
 
-            AlunoViewModel prova = await _context.Exams
+            StudentViewModel prova = await _context.Exams
                 .Include(a => a.Student)
                 .Include(m => m.Subject)
                 .AsNoTracking()
@@ -128,10 +128,10 @@ namespace ClassroomManagement.Controllers
         // POST: Alunoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id, AlunoViewModel ProvasAluno)
+        public async Task<IActionResult> Delete(int id, StudentViewModel ProvasAluno)
         {
-            Exam prova = ProvasAluno.provas;
-            prova.StudentId = ProvasAluno.provas.Student.Id;
+            Exam prova = ProvasAluno.Exam;
+            prova.StudentId = ProvasAluno.Exam.Student.Id;
             if (id != prova.ExamId)
             {
                 return NotFound();

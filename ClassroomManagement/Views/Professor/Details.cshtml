@@ -1,4 +1,4 @@
-﻿@model ClassroomManagement.Models.ViewModel.ProfessorProvas
+﻿@model ClassroomManagement.Models.ViewModel.ProfessorExam
 
 @{
     ViewData["Title"] = "Detalhes";
@@ -15,13 +15,13 @@
             <b>Nome :</b>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Professores.Name)
+            @Html.DisplayFor(model => model.Professor.Name)
         </dd>
         <dt>
             <b>Materia</b>
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Materias.SubjectName)
+            @Html.DisplayFor(model => model.Subject.SubjectName)
         </dd>
         <dt>
             <b>Boletim</b>
@@ -34,7 +34,7 @@
                     <th>Nota</th>
                     <th></th>
                 </tr>
-                @foreach(var item in Model.Materias.Exams)
+                @foreach(var item in Model.Subject.Exams)
                 {
                     <tr>
                         <td>

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomManagement.Controllers
 {
-    public class ProfessoresController : Controller
+    public class ProfessorController : Controller
     {
         public readonly ClassroomManagementContext? _context;
 
-        public ProfessoresController(ClassroomManagementContext context)
+        public ProfessorController(ClassroomManagementContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace ClassroomManagement.Controllers
                 {
                     Id = p.Id,
                     ProfessorName = p.Name,
-                    Materia = pm.Subject!.SubjectName
+                    Subject = pm.Subject!.SubjectName
                 };
             
             return _context!.Professors != null ?
@@ -37,7 +37,7 @@ namespace ClassroomManagement.Controllers
                 return NotFound();
             }
 
-            ProfessorProvas professor = await _context.Professors
+            ProfessorExam professor = await _context.Professors
                 .Include(p => p.ProfessorSubject!)
                     .ThenInclude(m => m.Subject)
                         .ThenInclude(p => p.Exams)

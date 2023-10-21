@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string? ProfessorName { get; set; }
-        public string? Materia { get; set; }
+        public string? Subject { get; set; }
     }
 }

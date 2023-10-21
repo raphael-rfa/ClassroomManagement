@@ -45,7 +45,7 @@ namespace ClassroomManagement
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Alunos}/{action=Index}/{id?}");
+                pattern: "{controller=Student}/{action=Index}/{id?}");
 
             app.Run();
         }

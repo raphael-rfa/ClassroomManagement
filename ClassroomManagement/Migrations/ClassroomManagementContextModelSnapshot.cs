@@ -4,7 +4,6 @@ using ClassroomManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,11 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClassroomManagement.Migrations
 {
     [DbContext(typeof(ClassroomManagementContext))]
-    [Migration("20231020085026_rename_class")]
-    partial class renameclass
+    partial class ClassroomManagementContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +45,7 @@ namespace ClassroomManagement.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("Provas", (string)null);
+                    b.ToTable("Exam", (string)null);
                 });
 
             modelBuilder.Entity("ClassroomManagement.Models.Professor", b =>
@@ -69,7 +66,7 @@ namespace ClassroomManagement.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("Professores", (string)null);
+                    b.ToTable("Professor", (string)null);
                 });
 
             modelBuilder.Entity("ClassroomManagement.Models.ProfessorSubject", b =>
@@ -85,7 +82,7 @@ namespace ClassroomManagement.Migrations
                     b.HasIndex("ProfessorId")
                         .IsUnique();
 
-                    b.ToTable("ProfessorMateria", (string)null);
+                    b.ToTable("ProfessoSubject", (string)null);
                 });
 
             modelBuilder.Entity("ClassroomManagement.Models.Student", b =>
@@ -101,10 +98,10 @@ namespace ClassroomManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Alunos", (string)null);
+                    b.ToTable("Student", (string)null);
                 });
 
-            modelBuilder.Entity("ClassroomManagement.Models.SubJect", b =>
+            modelBuilder.Entity("ClassroomManagement.Models.Subject", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,7 +115,7 @@ namespace ClassroomManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Materias", (string)null);
+                    b.ToTable("Subject", (string)null);
                 });
 
             modelBuilder.Entity("ClassroomManagement.Models.Exam", b =>
@@ -129,7 +126,7 @@ namespace ClassroomManagement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ClassroomManagement.Models.SubJect", "Subject")
+                    b.HasOne("ClassroomManagement.Models.Subject", "Subject")
                         .WithMany("Exams")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -142,7 +139,7 @@ namespace ClassroomManagement.Migrations
 
             modelBuilder.Entity("ClassroomManagement.Models.Professor", b =>
                 {
-                    b.HasOne("ClassroomManagement.Models.SubJect", "Subject")
+                    b.HasOne("ClassroomManagement.Models.Subject", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId");
 
@@ -157,7 +154,7 @@ namespace ClassroomManagement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ClassroomManagement.Models.SubJect", "Subject")
+                    b.HasOne("ClassroomManagement.Models.Subject", "Subject")
                         .WithMany("ProfessorSubject")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -178,7 +175,7 @@ namespace ClassroomManagement.Migrations
                     b.Navigation("Exams");
                 });
 
-            modelBuilder.Entity("ClassroomManagement.Models.SubJect", b =>
+            modelBuilder.Entity("ClassroomManagement.Models.Subject", b =>
                 {
                     b.Navigation("Exams");
 

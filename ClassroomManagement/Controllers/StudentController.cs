@@ -12,11 +12,11 @@ using System.Text.RegularExpressions;
 
 namespace ClassroomManagement.Controllers
 {
-    public class AlunosController : Controller
+    public class StudentController : Controller
     {
         private readonly ClassroomManagementContext _context;
 
-        public AlunosController(ClassroomManagementContext context)
+        public StudentController(ClassroomManagementContext context)
         {
             _context = context;
         }
@@ -24,16 +24,16 @@ namespace ClassroomManagement.Controllers
         // GET: Alunoes
         public async Task<IActionResult> Index()
         {
-            IQueryable<MediaNotasGroup> alunos =                
+            IQueryable<AverageScoreGroup> alunos =                
                 from aluno in _context.Students
                 join prova in _context.Exams on aluno.Id equals prova.StudentId into notas
-                select new MediaNotasGroup
+                select new AverageScoreGroup
                 {
                     Id = aluno.Id,
                     Name = aluno.Name,                    
-                    Media = notas.Average(a => a.Score)
+                    Average = notas.Average(a => a.Score)
                 };
-            alunos = alunos.OrderByDescending(a => a.Media);
+            alunos = alunos.OrderByDescending(a => a.Average);
              
             return _context.Students != null ? 
                           View(await alunos.AsNoTracking().ToListAsync()):
