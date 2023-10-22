@@ -1,0 +1,10 @@
+﻿@model Subject
+
+@{
+    ViewData["title"] = "Criar";
+}
+
+<form asp-action="Create">
+    <input asp-for="SubjectName"/>
+    <input type="submit"/>
+</form>

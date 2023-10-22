@@ -1,0 +1,21 @@
+﻿@model Subject
+
+@{
+    ViewData["title"] = "Deletar";
+}
+
+<dl class="dl">
+    <dt>
+        <b>@Html.DisplayNameFor(model => model.SubjectName):</b>
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.SubjectName)
+    </dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id"/>
+    <input asp-for="SubjectName"/>
+    <input type="submit" value="Deletar"/>
+</form>
+

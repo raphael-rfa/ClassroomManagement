@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ProfessoresViewModel>
+
+@{
+    ViewData["title"] = "Professores";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Materia
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProfessorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectName)
+                </td>
+                <td>
+                    <a asp-action="DeleteConfirm" asp-route-id="@item.ProfessorId">Deletar</a>
+                    <a asp-action="Details" asp-route-professorId="@item.ProfessorId" asp-route-subjectId="@item.SubjectId">Detalhes</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

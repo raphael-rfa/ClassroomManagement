@@ -1,0 +1,42 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "Deletar";
+    double soma = 0;
+    double media = 0;
+}
+
+<div class="textHeader">
+    <h1>Excluir</h1>
+    <h3>Você tem certeza que deseja excluir o aluno ?</h3>
+</div>
+<div>
+    <dl class ="dl">
+        <dt>
+            <b>@Html.DisplayNameFor(model => model.Name):</b>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            <b>Media</b>
+        </dt>
+        <dd>
+            @{
+                foreach (var item in Model.Exams!)
+                {
+                    soma += item.Score;
+                }
+                media = soma / 7;
+            }
+            <p>@media.ToString("N2")</p>
+        </dd>
+    </dl>
+</div>
+ <div>   
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Deletar"/>
+        <a asp-action="Index">Voltar</a>
+    </form>
+</div>

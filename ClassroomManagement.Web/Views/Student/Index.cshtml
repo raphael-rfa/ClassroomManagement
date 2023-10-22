@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AverageScoreGroup>
+
+@{
+    ViewData["Title"] = "Tabela";
+    int posicao = 1;
+}
+
+<div class="textHeader">
+    <h1>Ranking do 1º ano(1991)</h1>
+    <h2>Grifinoria</h2>
+</div>
+<div style="overflow-x: auto;">
+    <table class="tabela">
+        <thead>
+            <tr>
+                <th>
+                    <span>Posição</span>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Average)
+                </th>
+                <th>
+                    <span>1º Ano</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(posicao + "º")
+                        @{posicao++;}
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Average)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
