@@ -15,12 +15,11 @@ public class StudentViewModel
         throw new NotImplementedException();
     }
 
-    public static implicit operator StudentViewModel?(Exam? p)
+    public static implicit operator StudentViewModel?(Exam p)
     {
-        Student student = new Student { Id = p!.Student!.Id, Name = p.Student.Name };
+        Student student = new Student(p.Student!.Name) { Id = p.Student!.Id};
         StudentViewModel exam;
         exam = new StudentViewModel { Exam = p, Student = student };
-        exam.Exam.StudentId = p.Student.Id;
         return exam;
         throw new NotImplementedException();
     }

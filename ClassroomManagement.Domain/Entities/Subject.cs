@@ -4,9 +4,15 @@ namespace ClassroomManagement.Domain.Entities;
 
 public sealed class Subject : BaseEntiy
 {
-    [MaxLength(50)]
-    public string? SubjectName { get; set; }
+    public Subject(string subjectName)
+    {
+        SubjectName = subjectName;
 
-    public ICollection<ProfessorSubject>? ProfessorSubject { get; set; }
-    public ICollection<Exam>? Exams { get; set; }
+        if (string.IsNullOrEmpty(subjectName))
+            throw new ArgumentNullException(nameof(subjectName));
+    }
+
+    [MaxLength(50)]
+    public string SubjectName { get; private set; }
+    public IReadOnlyCollection<Exam>? Exams { get; set; }
 }

@@ -43,7 +43,6 @@ namespace ClassroomManagement.Controllers
             if (ModelState.IsValid)
             {
                 Exam provas = notas.Exam;
-                provas.StudentId = notas.Student.Id;
                await _examRepository.Create(provas);
                 await _unitOfWork.Commit();
                 ViewData["MateriasId"] = new SelectList(await _subjectRepository.GetAll(), "Id", "SubjectName");
@@ -68,7 +67,6 @@ namespace ClassroomManagement.Controllers
         public async Task<IActionResult> Edit(int id, StudentViewModel ProvasAluno)
         {
             Exam prova = ProvasAluno.Exam;
-            prova.StudentId = ProvasAluno.Exam.Student.Id;
             if (id != prova.Id)
             {
                 return NotFound();
@@ -119,7 +117,6 @@ namespace ClassroomManagement.Controllers
         public async Task<IActionResult> Delete(int id, StudentViewModel ProvasAluno)
         {
             Exam prova = ProvasAluno.Exam;
-            prova.StudentId = ProvasAluno.Exam.Student.Id;
             if (id != prova.Id)
             {
                 return NotFound();
