@@ -53,8 +53,8 @@
                             @Html.DisplayFor(modelItem => item.Score)
                         </td>
                         <td>
-                            <a asp-controller="AlunoViewModel" asp-action="Edit" asp-route-id="@item.ExamId">Editar</a> |
-                            <a asp-controller="AlunoViewModel" asp-action="Delete" asp-route-id="@item.ExamId">Deletar</a>                            
+                            <a asp-controller="StudentViewModel" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                            <a asp-controller="StudentViewModel" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>                            
                         </td>
                     </tr> 
                 }
@@ -65,5 +65,5 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Editar Aluno</a> |
     <a asp-action="Index">Voltar ao ranking</a> | 
-    <a asp-controller="AlunoViewModel" asp-action="Create" asp-route-id="@Model!.Id">Adicionar prova</a>
+    <a asp-controller="StudentViewModel" asp-action="Create" asp-route-id="@Model!.Id">Adicionar prova</a>
 </div>

@@ -24,11 +24,11 @@
                     @Html.DisplayFor(modelItem => item.ProfessorName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Subject)
+                    @Html.DisplayFor(modelItem => item.SubjectName)
                 </td>
                 <td>
-                    <a asp-action="DeleteConfirm" asp-route-id="@item.Id">Deletar</a>
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                    <a asp-action="DeleteConfirm" asp-route-id="@item.ProfessorId">Deletar</a>
+                    <a asp-action="Details" asp-route-professorId="@item.ProfessorId" asp-route-subjectId="@item.SubjectId">Detalhes</a>
                 </td>
             </tr>
         }
