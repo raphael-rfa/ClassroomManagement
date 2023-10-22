@@ -9,14 +9,13 @@ public class ProfessorExam
     public Subject? Subject { get; set; }
     public Student? Student { get; set; }
 
-    public static implicit operator ProfessorExam?(Professor? v)
+    public static implicit operator ProfessorExam?(ProfessorSubject v)
     {
-        ProfessorExam p = new ProfessorExam()
+        ProfessorExam p = new ()
         {
-            Professor = v,
-            Subject = v!.ProfessorSubject.Subject
+            Professor = v.Professor,
+            Subject = v.Subject
         };
         return p;
-        throw new NotImplementedException();
     }
 }

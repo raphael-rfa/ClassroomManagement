@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ClassroomManagement.Migrations
+namespace ClassroomManagement.Infrastucture.Migrations
 {
     /// <inheritdoc />
     public partial class InitialRecreate : Migration

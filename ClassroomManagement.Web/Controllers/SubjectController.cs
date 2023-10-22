@@ -1,24 +1,26 @@
 ﻿using ClassroomManagement.Domain.Entities;
+using ClassroomManagement.Domain.Interfaces;
 using ClassroomManagement.Infrastucture.Context;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomManagement.Controllers
 {
     public class SubjectController : Controller
     {
         public readonly ClassroomManagementContext? _context;
+        public readonly ISubjectRepository _subjectRepository;
+        public readonly IUnitOfWork _unitOfWork;
 
-        public SubjectController(ClassroomManagementContext context)
+        public SubjectController(ClassroomManagementContext context, ISubjectRepository subjectRepository, IUnitOfWork unitOfWork)
         {
             _context = context;
+            _subjectRepository = subjectRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IActionResult> Index()
         {
-            return _context!.Subjects != null ?
-                View(await _context.Subjects.ToListAsync()) :
-                Problem("_context e nulo .");
+            return View(await _subjectRepository.GetAll());
         }
 
         public IActionResult Create()
@@ -32,26 +34,24 @@ namespace ClassroomManagement.Controllers
         {
             if(ModelState.IsValid)
             {
-                _context!.Add(materias);
-                await _context.SaveChangesAsync();
+                await _subjectRepository.Create(materias);
+                await _unitOfWork.Commit();
                 return RedirectToAction("Index");
             }
             return View();
         }
 
-        public async Task<IActionResult> DeleteConfirm(int? id)
+        public async Task<IActionResult> DeleteConfirm(int id)
         {
-            if(id == null || _context!.Subjects == null)
+            if(_context!.Subjects == null)
             {
                 return NotFound();
             }
 
-            var materias = await _context.Subjects
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var materias = await _subjectRepository.Get(id);
+
             if(materias == null)
-            {
                 return NotFound();
-            }
 
             return View(materias);
         }
@@ -60,16 +60,12 @@ namespace ClassroomManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            if(_context!.Subjects == null)
+            var materia = await _subjectRepository.Get(id);
+            if (materia != null)
             {
-                return Problem("Contexto Nulo");
+                _subjectRepository.Delete(materia);
             }
-            var materia = await _context.Subjects.FindAsync(id);
-            if(materia != null)
-            {
-                _context.Subjects.Remove(materia);
-            }
-            await _context.SaveChangesAsync();
+            await _unitOfWork.Commit();
             return RedirectToAction(nameof(Index));
         }
     }

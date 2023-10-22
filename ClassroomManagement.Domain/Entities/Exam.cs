@@ -4,7 +4,6 @@ namespace ClassroomManagement.Domain.Entities;
 
 public class Exam : BaseEntiy
 {
-    public int ExamId { get; set;}
     public int StudentId { get; set;}
     public int SubjectId { get; set; }
 
