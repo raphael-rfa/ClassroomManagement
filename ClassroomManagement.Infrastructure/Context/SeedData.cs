@@ -15,16 +15,16 @@ public static class SeedData
 
         var alunos = new Student[]
         {
-            new Student("Hermione Granger"),
-            new Student("Harry Potter"),
-            new Student("Ronald Weasley"),
-            new Student("Dino Thomas"),
-            new Student("Neville Longbottom"),
-            new Student("Simas Finnigan"),
-            new Student("Lilá Brown"),
-            new Student("Parvati Patil"),
-            new Student("Fay Dunbar"),
-            new Student("Kellah")
+            new Student(new("Hermione","Granger")),
+            new Student(new("Harry ","Potter")),
+            new Student(new("Ronald ","Weasley")),
+            new Student(new("Dino ","Thomas")),
+            new Student(new("Neville ","Longbottom")),
+            new Student(new("Simas ","Finnigan")),
+            new Student(new("Lilá ","Brown")),
+            new Student(new("Parvati ","Patil")),
+            new Student(new("Fay","Dunbar")),
+            new Student(new("Kellah",""))
         };
 
         foreach (Student aluno in alunos)

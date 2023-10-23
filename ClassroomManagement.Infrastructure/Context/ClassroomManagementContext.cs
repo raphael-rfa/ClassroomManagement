@@ -24,6 +24,13 @@ public class ClassroomManagementContext : DbContext
         modelBuilder.Entity<Professor>().ToTable("Professor");
         modelBuilder.Entity<ProfessorSubject>().ToTable("ProfessorSubject");
 
+        modelBuilder.Entity<Student>()
+            .OwnsOne(s => s.Name , n => 
+            {
+                n.Property(x => x.FirstName).HasColumnName("FirstName");
+                n.Property(x => x.LastName).HasColumnName("LastName");
+            });
+
         modelBuilder.Entity<ProfessorSubject>()
             .HasKey(p => new { p.SubjectId, p.ProfessorId });
     }
