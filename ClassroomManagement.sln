@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomManagement.Infrast
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomManagement.Web", "ClassroomManagement.Web\ClassroomManagement.Web.csproj", "{4ABAD8A5-22B2-43F0-A6FA-CE94835CE3B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomManagement.Test", "ClassroomManagement.Test\ClassroomManagement.Test.csproj", "{9BAA7841-6E50-441A-9FE1-023133747253}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4ABAD8A5-22B2-43F0-A6FA-CE94835CE3B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ABAD8A5-22B2-43F0-A6FA-CE94835CE3B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ABAD8A5-22B2-43F0-A6FA-CE94835CE3B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BAA7841-6E50-441A-9FE1-023133747253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BAA7841-6E50-441A-9FE1-023133747253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BAA7841-6E50-441A-9FE1-023133747253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BAA7841-6E50-441A-9FE1-023133747253}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
