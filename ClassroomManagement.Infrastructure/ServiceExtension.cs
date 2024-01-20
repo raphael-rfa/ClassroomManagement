@@ -1,4 +1,6 @@
-﻿using ClassroomManagement.Domain.Interfaces;
+﻿using ClassroomManagement.Domain.Interfaces.Repositories;
+using ClassroomManagement.Domain.Interfaces.Services;
+using ClassroomManagement.Domain.Services;
 using ClassroomManagement.Infrastructure.Repositories;
 using ClassroomManagement.Infrastucture.Context;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +11,7 @@ namespace ClassroomManagement.Infrastructure;
 
 public static class ServiceExtension
 {
-    public static void ConfigurePersistenceApp(this IServiceCollection services,                IConfiguration configuration)
+    public static void ConfigurePersistenceApp(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ClassroomManagementContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'GestãoDeSalaDeAulaContext' not found.")));
@@ -20,5 +22,9 @@ public static class ServiceExtension
         services.AddScoped<IProfessorRepository, ProfessorRepository>();
         services.AddScoped<IProfessorSubjectRepository, ProfessorSubjectRepository>();
         services.AddScoped<IExamRepository, ExamRepository>();
+        services.AddScoped<IProfessorSubjectService, ProfessorSubjectService>();
+        services.AddScoped<ISubjectService, SubjectService>();
+        services.AddScoped<IStudentService, StudentService>();
+        services.AddScoped<IExamService, ExamService>();
     }
 }

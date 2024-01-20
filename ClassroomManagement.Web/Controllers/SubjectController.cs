@@ -1,5 +1,6 @@
 ﻿using ClassroomManagement.Domain.Entities;
-using ClassroomManagement.Domain.Interfaces;
+using ClassroomManagement.Domain.Interfaces.Repositories;
+using ClassroomManagement.Domain.Interfaces.Services;
 using ClassroomManagement.Infrastucture.Context;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,19 +9,19 @@ namespace ClassroomManagement.Controllers
     public class SubjectController : Controller
     {
         public readonly ClassroomManagementContext? _context;
-        public readonly ISubjectRepository _subjectRepository;
+        public readonly ISubjectService _subjectService;
         public readonly IUnitOfWork _unitOfWork;
 
-        public SubjectController(ClassroomManagementContext context, ISubjectRepository subjectRepository, IUnitOfWork unitOfWork)
+        public SubjectController(ClassroomManagementContext context, ISubjectService subjectService, IUnitOfWork unitOfWork)
         {
             _context = context;
-            _subjectRepository = subjectRepository;
+            _subjectService = subjectService;
             _unitOfWork = unitOfWork;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _subjectRepository.GetAll());
+            return View(await _subjectService.GetAll());
         }
 
         public IActionResult Create()
@@ -34,7 +35,7 @@ namespace ClassroomManagement.Controllers
         {
             if(ModelState.IsValid)
             {
-                await _subjectRepository.Create(materias);
+                await _subjectService.Create(materias);
                 await _unitOfWork.Commit();
                 return RedirectToAction("Index");
             }
@@ -48,7 +49,7 @@ namespace ClassroomManagement.Controllers
                 return NotFound();
             }
 
-            var materias = await _subjectRepository.Get(id);
+            var materias = await _subjectService.Get(id);
 
             if(materias == null)
                 return NotFound();
@@ -60,10 +61,10 @@ namespace ClassroomManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var materia = await _subjectRepository.Get(id);
+            var materia = await _subjectService.Get(id);
             if (materia != null)
             {
-                _subjectRepository.Delete(materia);
+                _subjectService.Delete(materia);
             }
             await _unitOfWork.Commit();
             return RedirectToAction(nameof(Index));

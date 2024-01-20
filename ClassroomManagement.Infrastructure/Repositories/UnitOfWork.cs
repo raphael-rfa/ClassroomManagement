@@ -1,4 +1,4 @@
-﻿using ClassroomManagement.Domain.Interfaces;
+﻿using ClassroomManagement.Domain.Interfaces.Repositories;
 using ClassroomManagement.Infrastucture.Context;
 
 namespace ClassroomManagement.Infrastructure.Repositories;

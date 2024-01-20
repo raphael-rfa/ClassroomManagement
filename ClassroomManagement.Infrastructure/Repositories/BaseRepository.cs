@@ -1,5 +1,5 @@
 ﻿using ClassroomManagement.Domain.Entities;
-using ClassroomManagement.Domain.Interfaces;
+using ClassroomManagement.Domain.Interfaces.Repositories;
 using ClassroomManagement.Infrastucture.Context;
 using Microsoft.EntityFrameworkCore;
 
