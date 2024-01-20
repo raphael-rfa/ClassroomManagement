@@ -12,8 +12,8 @@ public class Name
         if (string.IsNullOrEmpty(firstName))
             throw new ArgumentNullException(nameof(firstName));
 
-        //if (string.IsNullOrEmpty(lastName))
-        //    throw new ArgumentNullException(nameof(lastName));
+        if (string.IsNullOrEmpty(lastName))
+            throw new ArgumentNullException(nameof(lastName));
     }
 
     public string FirstName { get; private set; }

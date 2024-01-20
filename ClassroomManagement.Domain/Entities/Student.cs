@@ -1,5 +1,4 @@
 ﻿using ClassroomManagement.Domain.ValueObjects;
-using System.ComponentModel.DataAnnotations;
 
 namespace ClassroomManagement.Domain.Entities;
 
@@ -11,7 +10,6 @@ public sealed class Student : BaseEntiy
         Name = name;
     }
 
-    [Display(Name = "Nome completo")]
     public Name Name { get; private set; }
     
     public IReadOnlyCollection<Exam>? Exams { get; set; }

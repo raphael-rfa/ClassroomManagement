@@ -33,6 +33,13 @@ public class ClassroomManagementContext : DbContext
 
         modelBuilder.Entity<ProfessorSubject>()
             .HasKey(p => new { p.SubjectId, p.ProfessorId });
+
+        modelBuilder.Entity<Professor>()
+            .OwnsOne(p => p.Name, n =>
+            {
+                n.Property(x => x.FirstName).HasColumnName("FirstName");
+                n.Property(x => x.LastName).HasColumnName("LastName");
+            });
     }
 
 }

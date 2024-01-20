@@ -1,16 +1,16 @@
-﻿namespace ClassroomManagement.Domain.Entities;
+﻿using ClassroomManagement.Domain.ValueObjects;
+
+namespace ClassroomManagement.Domain.Entities;
 
 public class Professor : BaseEntiy
 {
-    public Professor(string name)
+    private Professor() {}
+    public Professor(Name name)
     {
         Name = name;
-
-        if (string.IsNullOrEmpty(Name))
-            throw new ArgumentNullException(nameof(name));
     }
 
-    public string Name { get; private set; }
+    public Name Name { get; private set; }
     public Subject? Subject { get; private set; }
     public ProfessorSubject? ProfessorSubject { get; private set; }
 }
