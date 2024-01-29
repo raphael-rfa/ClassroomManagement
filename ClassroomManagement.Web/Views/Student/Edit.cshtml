@@ -16,9 +16,9 @@
             <div asp-validation-summary="ModelOnly"></div>
             <input type="hidden" asp-for="Id" />
             <div>
-                <label asp-for="Name"></label>
-                <input asp-for="Name"/>
-                <span asp-validation-for="Name"></span>
+                <label asp-for="Name.FirstName">Primeiro Nome</label>
+                <input asp-for="Name.FirstName"/>
+                <span asp-validation-for="Name.FirstName"></span>
             </div>            
             <div>
                 <input type="submit" value="Atualizar"/>

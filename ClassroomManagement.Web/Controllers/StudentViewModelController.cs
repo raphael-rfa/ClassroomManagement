@@ -1,5 +1,6 @@
 ﻿using ClassroomManagement.Domain.Entities;
-using ClassroomManagement.Domain.Interfaces;
+using ClassroomManagement.Domain.Interfaces.Repositories;
+using ClassroomManagement.Domain.Interfaces.Services;
 using ClassroomManagement.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,18 +10,18 @@ namespace ClassroomManagement.Controllers
 {
     public class StudentViewModelController : Controller
     {
-        public readonly IStudentRepository _studentRepository;
-        public readonly ISubjectRepository _subjectRepository;
-        public readonly IExamRepository _examRepository;
+        public readonly IStudentService _studentService;
+        public readonly ISubjectService _subjectService;
+        public readonly IExamService _examService;
         public readonly IUnitOfWork _unitOfWork;
 
 
-        public StudentViewModelController(IUnitOfWork unitOfWork, IExamRepository examRepository,IStudentRepository studentRepository,ISubjectRepository subjectRepository)
+        public StudentViewModelController(IUnitOfWork unitOfWork, IExamService examService, IStudentService  studentService, ISubjectService subjectService)
         {
             _unitOfWork = unitOfWork;
-            _examRepository = examRepository;
-            _studentRepository = studentRepository;
-            _subjectRepository = subjectRepository;
+            _examService = examService;
+            _studentService = studentService;
+            _subjectService = subjectService;
         }
 
         public IActionResult Index()
@@ -31,8 +32,8 @@ namespace ClassroomManagement.Controllers
         public async Task<IActionResult> Create(int Id)
         {
 
-            StudentViewModel aluno = await _studentRepository.Get(Id);
-            ViewData["MateriasId"] = new SelectList(await _subjectRepository.GetAll(), "Id", "SubjectName");
+            StudentViewModel aluno = await _studentService.Get(Id);
+            ViewData["MateriasId"] = new SelectList(await _subjectService.GetAll(), "Id", "SubjectName");
             return View(aluno);
         }
 
@@ -43,19 +44,18 @@ namespace ClassroomManagement.Controllers
             if (ModelState.IsValid)
             {
                 Exam provas = notas.Exam;
-                provas.StudentId = notas.Student.Id;
-               await _examRepository.Create(provas);
+               await _examService.Create(provas);
                 await _unitOfWork.Commit();
-                ViewData["MateriasId"] = new SelectList(await _subjectRepository.GetAll(), "Id", "SubjectName");
+                ViewData["MateriasId"] = new SelectList(await _subjectService.GetAll(), "Id", "SubjectName");
                 return View(notas);
             }
-            ViewData["MateriasId"] = new SelectList(await _subjectRepository.GetAll(), "Id", "SubjectName");
+            ViewData["MateriasId"] = new SelectList(await _subjectService.GetAll(), "Id", "SubjectName");
             return View(notas);
         }
 
         public async Task<IActionResult> Edit(int id)
         {
-            StudentViewModel prova = await _examRepository.GetWithStudentAndSubject(id);
+            StudentViewModel prova = await _examService.GetWithStudentAndSubject(id);
             
             if (prova == null)
                 return NotFound();
@@ -68,7 +68,6 @@ namespace ClassroomManagement.Controllers
         public async Task<IActionResult> Edit(int id, StudentViewModel ProvasAluno)
         {
             Exam prova = ProvasAluno.Exam;
-            prova.StudentId = ProvasAluno.Exam.Student.Id;
             if (id != prova.Id)
             {
                 return NotFound();
@@ -78,7 +77,7 @@ namespace ClassroomManagement.Controllers
             {
                 try
                 {
-                    _examRepository.Update(prova);
+                    _examService.Update(prova);
                     await _unitOfWork.Commit();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -100,13 +99,13 @@ namespace ClassroomManagement.Controllers
 
         private async Task<bool> ProvaExists(int id)
         {
-            return await _examRepository.Any(id);
+            return await _examService.Any(id);
         }
 
         //HTTP Get Delete        
         public async Task<IActionResult> Delete(int id)
         {
-            StudentViewModel prova = await _examRepository.GetWithStudentAndSubject(id);
+            StudentViewModel prova = await _examService.GetWithStudentAndSubject(id);
             
             if (prova == null)
                 return NotFound();
@@ -119,7 +118,6 @@ namespace ClassroomManagement.Controllers
         public async Task<IActionResult> Delete(int id, StudentViewModel ProvasAluno)
         {
             Exam prova = ProvasAluno.Exam;
-            prova.StudentId = ProvasAluno.Exam.Student.Id;
             if (id != prova.Id)
             {
                 return NotFound();
@@ -129,7 +127,7 @@ namespace ClassroomManagement.Controllers
             {
                 try
                 {
-                    _examRepository.Delete(prova);
+                    _examService.Delete(prova);
                     await _unitOfWork.Commit();
                 }
                 catch (DbUpdateConcurrencyException)

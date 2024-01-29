@@ -1,4 +1,4 @@
-﻿using ClassroomManagement.Domain.Interfaces;
+﻿using ClassroomManagement.Domain.Interfaces.Services;
 using ClassroomManagement.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,32 +6,21 @@ namespace ClassroomManagement.Controllers
 {
     public class ProfessorController : Controller
     {
-        private readonly IProfessorSubjectRepository _professorSubjectRepository;
+        private readonly IProfessorSubjectService _professorSubjectService;
 
-        public ProfessorController(IProfessorSubjectRepository professorRepository)
+        public ProfessorController(IProfessorSubjectService professorService)
         {
-            _professorSubjectRepository = professorRepository;
+            _professorSubjectService = professorService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var professorsSubject = await _professorSubjectRepository.GetProfessorsAndSubjectsAsync();
-            
-            List<ProfessoresViewModel> professoresViewModel = professorsSubject
-                .Select(x => new ProfessoresViewModel
-                {
-                    ProfessorId = x.Professor!.Id,
-                    ProfessorName = x.Professor!.Name,
-                    SubjectName = x.Subject!.SubjectName,
-                    SubjectId = x.Subject!.Id,
-                }).ToList();
-            
-            return View(professoresViewModel);
+            return View(await _professorSubjectService.GetProfessorsAndSubjectsAsync());
         }
 
         public async Task<IActionResult> Details(int professorId, int subjectId)
         {
-            ProfessorExam? professor = await _professorSubjectRepository.Get(professorId,subjectId); 
+            ProfessorExam? professor = await _professorSubjectService.Get(professorId,subjectId); 
 
             if (professor == null)
                 return NotFound();

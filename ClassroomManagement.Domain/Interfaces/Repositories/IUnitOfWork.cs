@@ -1,4 +1,4 @@
-﻿namespace ClassroomManagement.Domain.Interfaces;
+﻿namespace ClassroomManagement.Domain.Interfaces.Repositories;
 
 public interface IUnitOfWork
 {

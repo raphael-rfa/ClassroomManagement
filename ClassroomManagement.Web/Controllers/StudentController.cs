@@ -1,5 +1,6 @@
 ﻿using ClassroomManagement.Domain.Entities;
-using ClassroomManagement.Domain.Interfaces;
+using ClassroomManagement.Domain.Interfaces.Repositories;
+using ClassroomManagement.Domain.Interfaces.Services;
 using ClassroomManagement.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,34 +9,24 @@ namespace ClassroomManagement.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly IStudentRepository _studentRepository;
+        private readonly IStudentService _studentService;
         private readonly IUnitOfWork _unitOfWork;
 
-        public StudentController(IStudentRepository studentRepository, IUnitOfWork unitOfWork)
+        public StudentController(IStudentService studentRepository, IUnitOfWork unitOfWork)
         {
-            _studentRepository = studentRepository;
+            _studentService = studentRepository;
             _unitOfWork = unitOfWork;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<Student> students = await _studentRepository.GetAllWithExams();
-            List<AverageScoreGroup> studentsWithScore = students
-                .Select(x => new AverageScoreGroup
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Average = x.Exams.Average(a => a.Score)
-                })
-                .OrderByDescending(a => a.Average)
-                .ToList();
-             
+            List<AverageScoreGroup> studentsWithScore = await _studentService.GetStudentsWithAverageScores();
             return View(studentsWithScore);
         }
 
         public async Task<IActionResult> Details(int id)
         {
-            var aluno = await _studentRepository.GetWithExams(id);
+            var aluno = await _studentService.GetWithExams(id);
 
             if (aluno == null)
                 return NotFound();
@@ -56,7 +47,7 @@ namespace ClassroomManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _studentRepository.Create(aluno);
+                await _studentService.Create(aluno);
                 await _unitOfWork.Commit();
                 return RedirectToAction("Create", new RouteValueDictionary(
                 new { controller = "StudentViewModel", action = "Create", aluno.Id }));
@@ -66,7 +57,7 @@ namespace ClassroomManagement.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var aluno = await _studentRepository.Get(id);
+            var aluno = await _studentService.Get(id);
             
             if (aluno == null)
                 return NotFound();
@@ -89,7 +80,7 @@ namespace ClassroomManagement.Controllers
             {
                 try
                 {
-                    _studentRepository.Update(aluno);
+                    _studentService.Update(aluno);
                     await _unitOfWork.Commit();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -110,7 +101,7 @@ namespace ClassroomManagement.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            var aluno = await _studentRepository.GetWithExams(id);
+            var aluno = await _studentService.GetWithExams(id);
             
             if (aluno == null)
                 return NotFound();
@@ -122,10 +113,10 @@ namespace ClassroomManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var aluno = await _studentRepository.Get(id)
+            var aluno = await _studentService.Get(id)
                 ?? throw new Exception("Aluno não encontrado.");
              
-            _studentRepository.Delete(aluno);
+            _studentService.Delete(aluno);
             
             await _unitOfWork.Commit();
             return RedirectToAction(nameof(Index));
@@ -133,7 +124,7 @@ namespace ClassroomManagement.Controllers
 
         private async Task<bool> AlunoExists(int id)
         {
-          return await _studentRepository.Any(id);
+          return await _studentService.Any(id);
         }
     }
 }

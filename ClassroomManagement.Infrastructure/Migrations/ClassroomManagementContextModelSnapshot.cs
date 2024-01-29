@@ -56,9 +56,6 @@ namespace ClassroomManagement.Infrastucture.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("SubjectId")
                         .HasColumnType("int");
 
@@ -93,9 +90,6 @@ namespace ClassroomManagement.Infrastucture.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Student", (string)null);
@@ -110,6 +104,7 @@ namespace ClassroomManagement.Infrastucture.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("SubjectName")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -143,6 +138,32 @@ namespace ClassroomManagement.Infrastucture.Migrations
                         .WithMany()
                         .HasForeignKey("SubjectId");
 
+                    b.OwnsOne("ClassroomManagement.Domain.ValueObjects.Name", "Name", b1 =>
+                        {
+                            b1.Property<int>("ProfessorId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("FirstName");
+
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("LastName");
+
+                            b1.HasKey("ProfessorId");
+
+                            b1.ToTable("Professor");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ProfessorId");
+                        });
+
+                    b.Navigation("Name")
+                        .IsRequired();
+
                     b.Navigation("Subject");
                 });
 
@@ -155,7 +176,7 @@ namespace ClassroomManagement.Infrastucture.Migrations
                         .IsRequired();
 
                     b.HasOne("ClassroomManagement.Domain.Entities.Subject", "Subject")
-                        .WithMany("ProfessorSubject")
+                        .WithMany()
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -163,6 +184,35 @@ namespace ClassroomManagement.Infrastucture.Migrations
                     b.Navigation("Professor");
 
                     b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("ClassroomManagement.Domain.Entities.Student", b =>
+                {
+                    b.OwnsOne("ClassroomManagement.Domain.ValueObjects.Name", "Name", b1 =>
+                        {
+                            b1.Property<int>("StudentId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("FirstName");
+
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("LastName");
+
+                            b1.HasKey("StudentId");
+
+                            b1.ToTable("Student");
+
+                            b1.WithOwner()
+                                .HasForeignKey("StudentId");
+                        });
+
+                    b.Navigation("Name")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ClassroomManagement.Domain.Entities.Professor", b =>
@@ -178,8 +228,6 @@ namespace ClassroomManagement.Infrastucture.Migrations
             modelBuilder.Entity("ClassroomManagement.Domain.Entities.Subject", b =>
                 {
                     b.Navigation("Exams");
-
-                    b.Navigation("ProfessorSubject");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,11 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ClassroomManagement.Domain.ValueObjects;
 
 namespace ClassroomManagement.Domain.Entities;
 
 public sealed class Student : BaseEntiy
 {
-    [Display(Name = "Nome completo")]
-    public string? Name { get; set; }
+    private Student() { }
+    public Student(Name name)
+    {
+        Name = name;
+    }
+
+    public Name Name { get; private set; }
     
-    public ICollection<Exam>? Exams { get; set; }
+    public IReadOnlyCollection<Exam>? Exams { get; set; }
 }

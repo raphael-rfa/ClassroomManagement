@@ -1,5 +1,6 @@
 ﻿using ClassroomManagement.Domain.Entities;
-using ClassroomManagement.Domain.Interfaces;
+using ClassroomManagement.Domain.Interfaces.Repositories;
+using ClassroomManagement.Domain.Queries;
 using ClassroomManagement.Infrastucture.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +9,8 @@ namespace ClassroomManagement.Infrastructure.Repositories;
 public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntiy
 {
     protected readonly ClassroomManagementContext Context;
-    public BaseRepository(ClassroomManagementContext context) 
-    {
+    public BaseRepository(ClassroomManagementContext context)
+	{
         Context = context;            
     }
     public async Task Create(T entity)
@@ -29,7 +30,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntiy
 
     public async Task<T> Get(int id, CancellationToken cancellationToken)
     {
-        return await Context.Set<T>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        return await Context.Set<T>().FirstOrDefaultAsync(BaseQueries.Get<T>(id), cancellationToken);
     }
 
     public async Task<List<T>> GetAll(CancellationToken cancellationToken)
