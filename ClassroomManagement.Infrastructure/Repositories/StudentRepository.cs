@@ -1,5 +1,6 @@
 ﻿using ClassroomManagement.Domain.Entities;
 using ClassroomManagement.Domain.Interfaces.Repositories;
+using ClassroomManagement.Domain.Queries;
 using ClassroomManagement.Infrastucture.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,14 +9,14 @@ namespace ClassroomManagement.Infrastructure.Repositories;
 public class StudentRepository : BaseRepository<Student>, IStudentRepository
 {
     public StudentRepository(ClassroomManagementContext context) : base(context)
-    {
+	{
     }
 
     public async Task<bool> Any(int id)
     {
         return await Context.Set<Student>()
             .AsNoTracking()
-            .AnyAsync(s => s.Id == id);
+            .AnyAsync(BaseQueries.Get<Student>(id));
     }
 
     public async Task<List<Student>> GetAllWithExams()
@@ -30,7 +31,7 @@ public class StudentRepository : BaseRepository<Student>, IStudentRepository
     {
         return await Context.Set<Student>()
             .AsNoTracking()
-            .Where(s => s.Id == id)
+            .Where(BaseQueries.Get<Student>(id))
             .Include(e => e.Exams)
                 .ThenInclude(s => s.Subject)
             .FirstOrDefaultAsync();

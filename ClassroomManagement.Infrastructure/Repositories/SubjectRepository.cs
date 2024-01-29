@@ -7,6 +7,6 @@ namespace ClassroomManagement.Infrastructure.Repositories;
 public class SubjectRepository : BaseRepository<Subject>, ISubjectRepository
 {
     public SubjectRepository(ClassroomManagementContext context) : base(context)
-    {
+	{
     }
 }

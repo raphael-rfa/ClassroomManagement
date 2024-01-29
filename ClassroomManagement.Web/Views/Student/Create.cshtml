@@ -14,20 +14,20 @@
             <div asp-validation-summary="ModelOnly"></div>
             <div>
                 <label asp-for="Name"></label>
-                <input asp-for="Name"/>
+                <input asp-for="Name" />
                 <span asp-validation-for="Name"></span>
             </div>
             <div>
-                <input type="submit" value="Inscrever"/>
+                <input type="submit" value="Inscrever" />
             </div>
         </form>
     </div>
     <div class="boxLinha">
         <h2>Sobre</h2>
         <p>
-            No mundo de Harry Potter os pais não precisam ir até a escola para increver seus 
-            filhos, quando uma criança nasce com magia seu nome é escrito por uma pena em um 
-            livro grande e quando a criança chega aos 11 anos uma carta é enviada para a casa 
+            No mundo de Harry Potter os pais não precisam ir até a escola para increver seus
+            filhos, quando uma criança nasce com magia seu nome é escrito por uma pena em um
+            livro grande e quando a criança chega aos 11 anos uma carta é enviada para a casa
             dela.
         </p>
     </div>
@@ -38,5 +38,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

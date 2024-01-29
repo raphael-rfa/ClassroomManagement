@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ClassroomManagement.Domain.Tools;
+using System.ComponentModel.DataAnnotations;
 
 namespace ClassroomManagement.Domain.Entities;
 
@@ -6,10 +7,7 @@ public sealed class Subject : BaseEntiy
 {
     public Subject(string subjectName)
     {
-        SubjectName = subjectName;
-
-        if (string.IsNullOrEmpty(subjectName))
-            throw new ArgumentNullException(nameof(subjectName));
+        SubjectName = subjectName.ThrowIfNullOrEmpty(nameof(subjectName));
     }
 
     [MaxLength(50)]

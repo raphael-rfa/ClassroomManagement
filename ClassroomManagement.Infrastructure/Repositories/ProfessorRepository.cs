@@ -8,6 +8,6 @@ namespace ClassroomManagement.Infrastructure.Repositories;
 public class ProfessorRepository : BaseRepository<Professor>, IProfessorRepository
 {
     public ProfessorRepository(ClassroomManagementContext context) : base(context)
-    {
+	{
     }
 }

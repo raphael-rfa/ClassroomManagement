@@ -1,14 +1,13 @@
-﻿namespace ClassroomManagement.Domain.Entities;
+﻿using ClassroomManagement.Domain.Tools;
+
+namespace ClassroomManagement.Domain.Entities;
 
 public sealed class ProfessorSubject
 {
     public ProfessorSubject(int professorId, int subjectId)
     {
-        ProfessorId = professorId;
-        SubjectId = subjectId;
-
-        if (professorId == 0 || subjectId == 0)
-            throw new Exception("StudentId or SubjectId invalid.");
+        ProfessorId = professorId.ThrowIfEqualZero("ProfessorId é 0");
+        SubjectId = subjectId.ThrowIfEqualZero("SubjectId é 0");
     }
 
     public int ProfessorId { get; private set;}
